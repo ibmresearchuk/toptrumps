@@ -170,6 +170,9 @@ class Games:
 
 if __name__ == "__main__":
 
+    if not os.path.exists("./data/training"):
+        os.makedirs("./data/training")
+
     apiconfig = {
         "/" : {
             "request.dispatch" : cherrypy.dispatch.MethodDispatcher(),
