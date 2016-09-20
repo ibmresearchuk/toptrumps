@@ -130,11 +130,26 @@ def predict (botname, deckname, card):
 
     predictions = model.predict_proba(data)
 
-    choices = []
+    print predictions
 
+    if len(predictions) != len(rules.keys()):
+        print "Insufficient training. Resorting to random."
+        return { "confidence" : 0, "choice" : randomChoice(rules) }
+
+    choices = []
     optionidx = 0
     for option in rules.keys():
         print option
+
+        print len(predictions[optionidx])
+
+        # we need predictions for win/loss/draw
+        #  which only happen once all options have been
+        #  represented in the training data
+        if len(predictions[optionidx]) != 3:
+            print "Insufficient training. Resorting to random."
+            return { "confidence" : 0, "choice" : randomChoice(rules) }
+
         loss_prob = predictions[optionidx][0]
         draw_prob = predictions[optionidx][1]
         win_prob = predictions[optionidx][2]
