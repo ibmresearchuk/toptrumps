@@ -1,21 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-	<title>Top Trumps</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<link rel="stylesheet" href="stylesheets/style.css" />
+  <title>Cognitive Top Trumps</title>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Third Party CSS -->
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <link rel="stylesheet" href="app/directives/card/card.css">
+  <link rel="stylesheet" href="app/views/duel/duel.css">
+
+  <!-- Third Party Libraries -->
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+  <!-- AngularJS App -->
+  <script src="app/app.js"></script>
+
+  <!-- AngularJS Controllers -->
+  <script src="app/views/duel/duel.controller.js"></script>
+
+  <!-- AngularJS Services/Factories -->
+  <script src="app/services/decks.service.js"></script>
+  <script src="app/services/game.service.js"></script>
+
+  <!-- AngularJS Directives -->
+  <script src="app/directives/card/card.directive.js"></script>
 </head>
-<body>
-	<table>
-		<tr>
-			<td style='width: 30%;'>
-				<img class = 'newappIcon' src='images/newapp-icon.png'>
-			</td>
-			<td>
-				<h1 id = "message">Hello World!</h1>
-				<p class='description'></p> Thanks for creating a <span class="blue">Python Starter Application</span>.
-			</td>
-		</tr>
-	</table>
+
+<body ng-app="toptrumps">
+  <div ui-view class="full-height"></div>
 </body>
+
 </html>

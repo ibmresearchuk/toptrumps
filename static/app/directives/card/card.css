@@ -1,0 +1,102 @@
+.tt-card-container {
+  padding: 10px;
+  text-align: center;
+  width: 300px;
+}
+
+.tt-card h1 {
+  font-size: 1.7em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tt-card img {
+  max-width: 50%;
+  max-height: 150px;
+  border-radius: 100px;
+}
+
+
+/* Attributes */
+
+.tt-card-attributes {
+  margin: auto;
+  margin-top: 10px;
+  border-spacing: 0px;
+}
+
+.tt-card-attributes th,
+.tt-card-attributes td {
+  padding: 8px 10px;
+}
+
+.tt-card-attributes th {
+  text-align: right;
+  width: 50%;
+}
+
+.tt-card-attributes td {
+  text-align: left;
+  width: 50%;
+}
+
+
+/* flipper/card CSS */
+
+.tt-card-container {
+  perspective: 1000px;
+}
+
+.tt-card.tt-card-hidden {
+  transform: rotateY(180deg);
+}
+
+.tt-card-container,
+.front,
+.back {
+  width: 320px;
+  height: 420px;
+}
+
+.tt-card {
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+
+/* 
+in-deck
+    transform: translate(0,150px)rotateX(-110deg);
+*/
+
+.tt-card .front,
+.tt-card .back {
+  width: 310px;
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 5px solid #cb8338;
+  border-radius: 10px;
+}
+
+.tt-card .front {
+  z-index: 2;
+  /* for firefox 31 */
+  transform: rotateY(0deg);
+  background-color: white;
+}
+
+.tt-card .back {
+  transform: rotateY(180deg);
+  background-color: #f6f00b;
+  background-image: url(https://www.transparenttextures.com/patterns/crissxcross.png);
+}
+
+
+/*
+shadow:
+box-shadow: 0px -13px 10px grey;
+*/

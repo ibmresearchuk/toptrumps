@@ -1,0 +1,47 @@
+.tt-side-player .tt-attribute:hover {
+  cursor: pointer;
+  color: orange;
+  transition: 0.3s color;
+}
+
+.tt-side-player .tt-card-container {
+  position: absolute;
+}
+
+.tt-deck {
+  position: relative;
+  height: 100%;
+}
+
+.tt-card-container.tt-card-stacked {
+  position: absolute;
+}
+
+.tt-card-container.tt-card-stacked .tt-card {
+  transform: rotateY(180deg);
+}
+
+.tt-side-player .tt-card-container.tt-card-stacked {
+  transform: translate(50px, 150px)rotateX(-110deg)rotateZ(-10deg);
+}
+
+.tt-side-computer .tt-card-container.tt-card-stacked {
+  transform: translate(50px, 150px)rotateX(-110deg)rotateZ(10deg);
+}
+
+.tt-card-container.tt-card-stacked .tt-card .back {
+  background-color: #e1dc0c;
+  box-shadow: 0px 0px 2px #726f04;
+}
+
+.tt-score {
+  position: absolute;
+  font-size: 72px;
+  right: 40px;
+  bottom: 40px;
+}
+
+.tt-side-computer .tt-score {
+  right: initial;
+  left: 40px;
+}

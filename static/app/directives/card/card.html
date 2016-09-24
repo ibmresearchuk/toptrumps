@@ -1,0 +1,24 @@
+<div class="tt-card-container" ontouchstart="this.classList.toggle('hover');">
+  <div class="tt-card" ng-class="{'tt-card-hidden' : !revealed}">
+    <div class="front">
+      <!-- front content -->
+      <h1>{{ cardData.name }}</h1>
+      <div>
+        <img ng-src="{{ cardData.picture }}">
+      </div>
+      <div>
+        <table class="tt-card-attributes">
+          <tbody>
+            <tr ng-repeat="(key, value) in cardData" class="tt-attribute" ng-hide="key === 'picture' || key === 'name'" ng-click="onSelectAttribute({'key' : key, 'value' : value})">
+              <th>{{ key }}</th>
+              <td>{{ value }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="back">
+      <!-- back content -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+{
+  "name": "top-trumps-ui",
+  "homepage": "https://github.com/dalelane/toptrumps",
+  "private": true,
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-ui-router": "^0.3.1"
+  }
+}
