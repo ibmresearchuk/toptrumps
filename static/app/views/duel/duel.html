@@ -1,5 +1,6 @@
 <div class="full-height">
-  <div class="tt-side tt-side-player">
+  <div ng-show="loading">Loading...</div>
+  <div ng-hide="loading" class="tt-side tt-side-player">
     <div class="tt-deck">
       <tt-card ng-repeat="card in decks.player" ng-class="{'tt-card-stacked' : $index > 0}" ng-style="{'top' : $index === 0 ? 0 : 180 + ((decks.computer.length-$index) * (130/decks.computer.length)) + 'px', 'right' : $index === 0 ? '20px' : 'initial'}" card-data="card" revealed="true" on-select-attribute="selectAttribute(key, value)"></tt-card>
       <div class="tt-score">{{ decks.computer.length }}</div>

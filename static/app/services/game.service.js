@@ -5,7 +5,7 @@ angular.module('toptrumps')
     return $q(function (resolve, reject) {
       $http({
         method: 'POST',
-        url: 'api/games?deckname=' + deck,
+        url: '/api/games?deckname=' + deck,
         data: {}
       }).then(function (response) {
         resolve(response.data);

@@ -5,16 +5,33 @@ angular.module('toptrumps', [
 .config(function ($urlRouterProvider, $stateProvider, $locationProvider) {
 
   $locationProvider.html5Mode({
-    enabled: true
+      enabled: true
   });
 
   $urlRouterProvider
-  .otherwise('/duel');
+    .otherwise('/welcome');
 
   $stateProvider
-  .state('duel', {
-    url: '/duel',
-    templateUrl: 'app/views/duel/duel.html',
-    controller: 'DuelCtrl'
-  });
+    .state('welcome', {
+      url: '/welcome',
+      templateUrl: 'app/views/welcome/welcome.html',
+      controller: 'WelcomeCtrl'
+    })
+    .state('botinfo', {
+      url: '/botinfo?botname',
+      templateUrl: 'app/views/botinfo/botinfo.html',
+      controller: 'BotInfoCtrl',
+      params : {
+        botname : ''
+      }
+    })
+    .state('duel', {
+      url: '/duel',
+      templateUrl: 'app/views/duel/duel.html',
+      controller: 'DuelCtrl',
+      params : {
+        botname : '',
+        deckname : ''
+      }
+    });
 });

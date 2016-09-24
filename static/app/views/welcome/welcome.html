@@ -1,0 +1,26 @@
+<div>
+    <div class="tt-side">
+        <h1>Teach a computer to play a card game</h1>
+    </div>
+    <div class="tt-side">
+        <div>This is a simple demo of machine learning. You can train a bot how to play a Top Trumps-style card game.</div>
+        <div>What shall we call your bot?</div>
+        <form name="createBot" ng-submit="startBot()">
+            <input
+                type="text"
+                name="input"
+                ng-model="botname.text"
+                ng-pattern="botname.word"
+                ng-trim="false"
+                ng-minlength=1
+                ng-maxlength=32
+                required/>
+            <input
+                type="submit"
+                id="submit"
+                ng-disabled="!createBot.$valid"
+                value="Submit" />
+            <span class="error" ng-show="createBot.input.$error.pattern">You can only use letters and numbers in your bot's name</span>
+        </form>
+    </div>
+</div>

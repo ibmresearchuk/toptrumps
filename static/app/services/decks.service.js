@@ -1,16 +1,19 @@
 angular.module('toptrumps')
 
 .factory('ttDecks', [function () {
+
   function get(deck) {
     $http({
       method : 'GET',
-      url : 'api/decks/' + deck
+      url : '/api/decks/' + deck
     }).then(function(response) {
       console.log(response);
     });
   }
 
   return {
-    get: get
+    get: get,
+
+    DECKNAME : 'kingsandqueens'
   };
 }]);
