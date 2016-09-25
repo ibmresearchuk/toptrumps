@@ -1,6 +1,5 @@
-angular.module('toptrumps')
+angular.module('toptrumps').controller('WelcomeCtrl', ['$scope', '$state', 'ttGame', function ($scope, $state, ttGame) {
 
-.controller('WelcomeCtrl', ['$scope', '$state', 'ttGame', function ($scope, $state, ttGame) {
     $scope.botname = {
         text : '',
         word : '[A-Za-z0-9]+'
