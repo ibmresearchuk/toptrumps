@@ -9,7 +9,11 @@
       <div>
         <table class="tt-card-attributes">
           <tbody>
-            <tr ng-repeat="(key, value) in cardData" class="tt-attribute" ng-hide="key === 'picture' || key === 'name'" ng-click="onSelectAttribute({'key' : key, 'value' : value})">
+            <tr
+              ng-repeat="(key, value) in cardData"
+              class="tt-attribute"
+              ng-hide="key === 'picture' || key === 'name'"
+              ng-click="onSelectAttribute({'key' : key, 'value' : value})">
               <th>{{ key }}</th>
               <td>{{ value }}</td>
             </tr>

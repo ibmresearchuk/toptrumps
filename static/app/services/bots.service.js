@@ -30,8 +30,50 @@ angular.module('toptrumps')
     });
   }
 
+  function train(deckname, botname) {
+    return $q(function (resolve, reject) {
+      $http({
+        method: 'PUT',
+        url: '/api/bots/' + botname + '?deckname=' + deckname,
+        data : {}
+      }).then(function (response) {
+        resolve(response.data);
+      });
+    });
+  }
+
+  function wait () {
+    var deferred = $q.defer();
+    setTimeout(deferred.resolve, 1000);
+    return deferred.promise;
+  }
+
+  function predict(deckname, botname, card) {
+    card.deckname = deckname;
+    return $q(
+      function (resolve, reject) {
+      $http({
+        method: 'GET',
+        url: '/api/bots/' + botname,
+        params : card
+      }).then(function (response) {
+        resolve(response.data);
+      });
+    });
+  }
+
+  function slowPredict(deckname, botname, card) {
+    return $q.all([wait(), predict(deckname, botname, card)])
+      .then(function (data) {
+          return data[1];
+      });
+  }
+
   return {
     get : get,
-    learn : learn
+    learn : learn,
+    train : train,
+    predict : predict,
+    slowPredict : slowPredict
   };
 }]);

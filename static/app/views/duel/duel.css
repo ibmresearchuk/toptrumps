@@ -45,3 +45,8 @@
   right: initial;
   left: 40px;
 }
+
+.ngdialog.ngdialog-theme-default {
+    padding-bottom: 160px;
+    padding-top: 95px
+}

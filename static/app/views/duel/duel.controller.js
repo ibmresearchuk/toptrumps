@@ -10,6 +10,8 @@ angular.module('toptrumps')
     $scope.botname = $state.params.botname;
     $scope.deckname = $state.params.deckname;
 
+    $scope.nextturn = 'player';
+
     var WIN = 1;
     var DRAW = 0;
     var LOSE = -1;
@@ -30,19 +32,57 @@ angular.module('toptrumps')
     computer : false
   };
 
-  $scope.selectAttribute = function (key, value) {
-    console.log("selected", key, value);
-    revealCard();
-    $scope.selection = key;
-    $scope.outcome = calculateResult(key);
-
-    $scope.learning = false;
+  function computerTurn () {
+    $scope.thinking = true;
+    delete $scope.prediction;
     ngDialog.open({
-      template : 'app/views/duel/dialog.html',
+      template : 'app/views/duel/computerturn.html',
       scope : $scope,
       showClose : false,
       closeByEscape : false
-    });
+    }).closePromise.then(afterTurn);
+
+
+    ttBots.slowPredict($scope.deckname, $scope.botname, getCardAttrs($scope.decks.computer[0]))
+      .then(function (data) {
+          revealCard();
+          $scope.prediction = data;
+          $scope.outcome = calculateResult(data.choice);
+          $scope.thinking = false;
+          $scope.learning = false;
+      });
+  }
+
+  function afterTurn () {
+    ttBots.train($scope.deckname, $scope.botname);
+
+    if ($scope.outcome === WIN) {
+      $scope.nextturn = 'player';
+    }
+    else if ($scope.outcome === LOSE) {
+      $scope.nextturn = 'computer';
+    }
+
+    if ($scope.nextturn === 'computer') {
+      setTimeout(computerTurn, 600);
+    }
+  }
+
+  $scope.selectAttribute = function (key, value) {
+    if ($scope.nextturn === 'player') {
+
+        revealCard();
+        $scope.selection = key;
+        $scope.outcome = calculateResult(key);
+
+        $scope.learning = false;
+        ngDialog.open({
+          template : 'app/views/duel/playerturn.html',
+          scope : $scope,
+          showClose : false,
+          closeByEscape : false
+        }).closePromise.then(afterTurn);
+    }
   };
 
   function revealCard () {
@@ -50,11 +90,6 @@ angular.module('toptrumps')
   }
 
   function calculateResult(key) {
-    console.log($scope.decks.player[0].name);
-    console.log($scope.decks.player[0][key]);
-    console.log($scope.decks.computer[0].name);
-    console.log($scope.decks.computer[0][key]);
-
     if ($scope.rules[key] === 'higher') {
       if ($scope.decks.player[0][key] > $scope.decks.computer[0][key]) {
         return WIN;

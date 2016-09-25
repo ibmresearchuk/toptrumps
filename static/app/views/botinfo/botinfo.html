@@ -20,7 +20,7 @@
         </div>
         <div ng-show="!loading && trainingcount > 0">
             <p>{{botname}} is learning how to play Top Trumps. It is learning which attribute it should choose when it is it's turn.</p>
-            <p>{{botname}} has seen {{trainingcount}} turns of the game so far.</p>
+            <p>{{botname}} has seen {{trainingcount}} {{ trainingcount === 1 ? 'turn' : 'turns' }} of the game so far.</p>
         </div>
     </div>
 </div>
