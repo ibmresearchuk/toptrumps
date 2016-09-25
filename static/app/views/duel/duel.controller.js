@@ -62,6 +62,17 @@ angular.module('toptrumps').controller('DuelCtrl', ['$scope', '$state', '$q', 'n
     function afterTurn () {
         ttBots.train($scope.deckname, $scope.botname);
 
+        // has the game finished?
+        if ($scope.decks.player.length === 0 ||
+            $scope.decks.computer.length === 0)
+        {
+            return ngDialog.open({
+                template : 'app/views/duel/gameover.html',
+                showClose : false,
+                closeByEscape : false
+            });
+        }
+
         if ($scope.outcome === WIN) {
             $scope.nextturn = 'player';
         }
