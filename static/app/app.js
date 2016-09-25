@@ -1,5 +1,5 @@
 angular.module('toptrumps', [
-  'ui.router'
+  'ui.router', 'ngDialog'
 ])
 
 .config(function ($urlRouterProvider, $stateProvider, $locationProvider) {

@@ -5,8 +5,7 @@ angular.module('toptrumps')
     return $q(function (resolve, reject) {
       $http({
         method: 'GET',
-        url: '/api/bots/' + botname,
-        data: {}
+        url: '/api/bots/' + botname
       }).then(function (response) {
         resolve(response.data);
       });
