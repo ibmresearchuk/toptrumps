@@ -12,7 +12,26 @@ angular.module('toptrumps')
     });
   }
 
+  function learn(deckname, botname, trainingdata) {
+    return $q(function (resolve, reject) {
+      $http({
+        method: 'PATCH',
+        url: '/api/bots/' + botname + '/training',
+        data : [
+          {
+            op : 'add',
+            deck : deckname,
+            value : trainingdata
+          }
+        ]
+      }).then(function (response) {
+        resolve(response.data);
+      });
+    });
+  }
+
   return {
-    get : get
+    get : get,
+    learn : learn
   };
 }]);

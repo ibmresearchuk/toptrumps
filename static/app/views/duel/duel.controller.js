@@ -1,8 +1,9 @@
 angular.module('toptrumps')
 
-.controller('DuelCtrl', ['$scope', '$state', '$q', 'ngDialog', 'ttGame', 'ttDecks', function ($scope, $state, $q, ngDialog, ttGame, ttDecks) {
+.controller('DuelCtrl', ['$scope', '$state', '$q', 'ngDialog', 'ttGame', 'ttDecks', 'ttBots', function ($scope, $state, $q, ngDialog, ttGame, ttDecks, ttBots) {
 
     $scope.loading = true;
+    $scope.learning = false;
 
     $scope.ngDialog = ngDialog;
 
@@ -32,7 +33,10 @@ angular.module('toptrumps')
   $scope.selectAttribute = function (key, value) {
     console.log("selected", key, value);
     revealCard();
+    $scope.selection = key;
     $scope.outcome = calculateResult(key);
+
+    $scope.learning = false;
     ngDialog.open({
       template : 'app/views/duel/dialog.html',
       scope : $scope,
@@ -85,7 +89,19 @@ angular.module('toptrumps')
   }
 
 
+  function getCardAttrs (card) {
+    var values = {};
+    var attrs = Object.keys($scope.rules);
+    for (var i = 0; i < attrs.length; i++) {
+      values[attrs[i]] = card[attrs[i]];
+    }
+    return values;
+  }
+
+
   $scope.drawCard = function () {
+    $scope.learning = true;
+
     $scope.show.computer = false;
 
     var playercard = $scope.decks.player.shift();
@@ -104,7 +120,23 @@ angular.module('toptrumps')
       $scope.decks.computer.push(computercard);
     }
 
-    ngDialog.close();
+    var training = [
+      {
+        card : getCardAttrs(playercard),
+        choice : $scope.selection,
+        outcome : $scope.outcome
+      },
+      {
+        card : getCardAttrs(computercard),
+        choice : $scope.selection,
+        outcome : $scope.outcome === 0 ? 0 : -($scope.outcome)
+      }
+    ];
+
+    ttBots.learn($scope.deckname, $scope.botname, training)
+      .then(function () {
+          ngDialog.close();
+      });
   };
 
 

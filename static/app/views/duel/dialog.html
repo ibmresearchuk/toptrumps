@@ -8,5 +8,5 @@
     <span ng-if="outcome === -1">
         You lose!
     </span>
-    <button ng-click="drawCard()">Next card</button>
+    <button ng-disabled="learning" ng-click="drawCard()">Next card</button>
 </div>
