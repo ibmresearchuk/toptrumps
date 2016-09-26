@@ -12,6 +12,12 @@ angular.module('toptrumps').controller('DuelCtrl', ['$scope', '$state', '$q', 'n
     /* this should be 'player' or 'computer' depending on whose turn it is next */
     $scope.nextturn = 'player';
 
+    /* current win streak the computer player has had so far in this game */
+    $scope.winstreak = 0;
+
+    /* how many hands of the game has this bot got in it's training data so far? */
+    $scope.computertraining = 0;
+
     /* matches the values used by the API */
     var WIN = 1;
     var DRAW = 0;
@@ -60,7 +66,16 @@ angular.module('toptrumps').controller('DuelCtrl', ['$scope', '$state', '$q', 'n
         short delay before kicking that off to make
         the game feel more natural. */
     function afterTurn () {
-        ttBots.train($scope.deckname, $scope.botname);
+        ttBots.train($scope.deckname, $scope.botname)
+            .then(function (data) {
+                if (data.status === 'complete') {
+                    // we submit two rows of training data for each
+                    //  turn of the game (one representing the player's
+                    //  card and outcome, the other representing the
+                    //  computer's card and their outcome)
+                    $scope.computertraining = data.hands / 2;
+                }
+            });
 
         // has the game finished?
         if ($scope.decks.player.length === 0 ||
@@ -147,6 +162,16 @@ angular.module('toptrumps').controller('DuelCtrl', ['$scope', '$state', '$q', 'n
 
                 // decide if the computer won
                 $scope.outcome = calculateResult(data.choice);
+                if ($scope.outcome === LOSE) {
+                    // if the player lost, this means the computer won
+                    //  so we increment it's streak counter
+                    $scope.winstreak += 1;
+                }
+                else if ($scope.outcome === WIN) {
+                    // if the player won, this means the computer made
+                    //  the wrong choice. so it's streak counter gets reset
+                    $scope.winstreak = 0;
+                }
 
                 // display it in the dialog
                 $scope.thinking = false;
