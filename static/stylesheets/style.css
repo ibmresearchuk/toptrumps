@@ -12,8 +12,15 @@ body {
 }
 
 .tt-side {
-  width: 49%;
+  width: 39%;
   height: 100%;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.tt-infopanel {
+  width: 20%;
   display: inline-block;
   overflow: hidden;
   vertical-align: top;

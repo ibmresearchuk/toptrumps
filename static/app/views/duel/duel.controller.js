@@ -3,17 +3,19 @@ angular.module('toptrumps').controller('DuelCtrl', ['$scope', '$state', '$q', 'n
     /* true when we're getting data we need to set up */
     $scope.loading = true;
 
+    /* true while waiting for the current player's turn */
+    $scope.thinking = true;
+
     /* true while submitting training data, so the player doesn't move on to the next card until this finishes */
     $scope.learning = false;
-
-    /* lets the dialog controllers call dialog functions */
-    $scope.ngDialog = ngDialog;
 
     /* this should be 'player' or 'computer' depending on whose turn it is next */
     $scope.nextturn = 'player';
 
     /* current win streak the computer player has had so far in this game */
     $scope.winstreak = 0;
+    /* best win streak the computer player has had so far in this game */
+    $scope.beststreak = 0;
 
     /* how many hands of the game has this bot got in it's training data so far? */
     $scope.computertraining = 0;
@@ -22,6 +24,10 @@ angular.module('toptrumps').controller('DuelCtrl', ['$scope', '$state', '$q', 'n
     var WIN = 1;
     var DRAW = 0;
     var LOSE = -1;
+
+    /* information about the previous hand */
+    $scope.previous = undefined;
+
 
 
     /* required info about the game */
@@ -59,49 +65,6 @@ angular.module('toptrumps').controller('DuelCtrl', ['$scope', '$state', '$q', 'n
     }
 
 
-    /* What should happen after a turn is complete.
-        Basically, we start the training of a new ML
-        model, and decide whose turn it should be next.
-        If it's the computer's turn, we introduce a
-        short delay before kicking that off to make
-        the game feel more natural. */
-    function afterTurn () {
-        ttBots.train($scope.deckname, $scope.botname)
-            .then(function (data) {
-                if (data.status === 'complete') {
-                    // we submit two rows of training data for each
-                    //  turn of the game (one representing the player's
-                    //  card and outcome, the other representing the
-                    //  computer's card and their outcome)
-                    $scope.computertraining = data.hands / 2;
-                }
-            });
-
-        // has the game finished?
-        if ($scope.decks.player.length === 0 ||
-            $scope.decks.computer.length === 0)
-        {
-            return ngDialog.open({
-                template : 'app/views/duel/gameover.html',
-                showClose : false,
-                closeByEscape : false
-            });
-        }
-
-        if ($scope.outcome === WIN) {
-            $scope.nextturn = 'player';
-        }
-        else if ($scope.outcome === LOSE) {
-            $scope.nextturn = 'computer';
-        }
-        // else if DRAW the nextturn stays the same
-
-        if ($scope.nextturn === 'computer') {
-            setTimeout(computerTurn, 600);
-        }
-    }
-
-
     /* Helper function to decide which player wins a hand.
         Bigger isn't always better, so this uses the rules
         for the deck to decide which player wins. */
@@ -131,41 +94,63 @@ angular.module('toptrumps').controller('DuelCtrl', ['$scope', '$state', '$q', 'n
     }
 
 
+
+    function waitForPlayerMove () {
+        $scope.thinking = true;
+    }
+
+
+    function handleMove (key) {
+        // reveal the computer's card
+        $scope.show.computer = true;
+
+        // work out who won
+        $scope.selection = key;
+        $scope.outcome = calculateResult(key);
+
+        // display the results
+        $scope.thinking = false;
+    }
+
+
+    /* Handles a player's move - invoked when they click on one of
+        the attributes on their card. */
+    $scope.userMove = function (key) {
+
+        // ignore if it's not their turn!
+        if ($scope.nextturn === 'player') {
+
+            // decide if the player won
+            handleMove(key);
+
+            // wait for the next-card button to be clicked
+        }
+    };
+
+
+
     /* Makes a move for the computer using the ML model
         for this bot. It opens a dialog to display the
         computer's move and the outcome. */
-    function computerTurn () {
+    function computerMove () {
         // displays a placeholder message while getting the prediction
         $scope.thinking = true;
 
-        // deletes any previous prediction
-        delete $scope.prediction;
-
-        // opens the dialog to handle the computer's turn
-        ngDialog.open({
-            template : 'app/views/duel/computerturn.html',
-            scope : $scope,
-            showClose : false,
-            closeByEscape : false
-        }).closePromise.then(afterTurn);
-
-        // in parallel, start getting the computer's move that
-        //   will populate the dialog once it returns
         ttBots.slowPredict($scope.deckname, $scope.botname, getCardAttrs($scope.decks.computer[0]))
             .then(function (data) {
-                // reveal the computer's card
-                $scope.show.computer = true;
-
-                // get the computer's choice ready to display
-                $scope.prediction = data;
-                $scope.selection = data.choice;
-
                 // decide if the computer won
-                $scope.outcome = calculateResult(data.choice);
+                handleMove(data.choice);
+
+                // keep track of computer's performance
                 if ($scope.outcome === LOSE) {
                     // if the player lost, this means the computer won
                     //  so we increment it's streak counter
                     $scope.winstreak += 1;
+
+                    // if this is our best ever score, increment it too
+                    if ($scope.winstreak > $scope.beststreak) {
+                        $scope.beststreak = $scope.winstreak;
+                    }
                 }
                 else if ($scope.outcome === WIN) {
                     // if the player won, this means the computer made
@@ -173,37 +158,46 @@ angular.module('toptrumps').controller('DuelCtrl', ['$scope', '$state', '$q', 'n
                     $scope.winstreak = 0;
                 }
 
-                // display it in the dialog
-                $scope.thinking = false;
-                $scope.learning = false;
+                // wait for the next-card button to be clicked
         });
     }
 
 
-    /* Handles a player's move - invoked when they click on one of
-        the attributes on their card. */
-    $scope.selectAttribute = function (key, value) {
-        // ignore if it's not their turn!
-        if ($scope.nextturn === 'player') {
+    /* Adds these cards to the training data and then builds a new
+        ML model using the updated training data */
+    function learnFromTurn (playercard, computercard) {
+        var training = [
+            // learning from the player's hand
+            {
+                card : getCardAttrs(playercard),
+                choice : $scope.selection,
+                outcome : $scope.outcome
+            },
+            // learning from the computer's hand
+            {
+                card : getCardAttrs(computercard),
+                choice : $scope.selection,
+                // if the player won, the computer lost
+                //   and vice versa.
+                // if the player drew, then leave the outcome as-is
+                outcome : $scope.outcome === 0 ? 0 : -($scope.outcome)
+            }
+        ];
 
-            // reveal the computer's card
-            $scope.show.computer = true;
-
-            // decide if the player won
-            $scope.selection = key;
-            $scope.outcome = calculateResult(key);
-
-            // display it in a dialog
-            $scope.learning = false;
-            ngDialog.open({
-                template : 'app/views/duel/playerturn.html',
-                scope : $scope,
-                showClose : false,
-                closeByEscape : false
-            }).closePromise.then(afterTurn);
-        }
-    };
-
+        return ttBots.learn($scope.deckname, $scope.botname, training)
+            .then(function () {
+                return ttBots.train($scope.deckname, $scope.botname);
+            })
+            .then(function (data) {
+                if (data.status === 'complete') {
+                    // we submit two rows of training data for each
+                    //  turn of the game (one representing the player's
+                    //  card and outcome, the other representing the
+                    //  computer's card and their outcome)
+                    $scope.computertraining = data.hands / 2;
+                }
+            });
+    }
 
 
     /* Moves on to the next card. Called when the user clicks on the
@@ -212,8 +206,7 @@ angular.module('toptrumps').controller('DuelCtrl', ['$scope', '$state', '$q', 'n
         won the last hand.
        It submits the outcome of the last hand to the API to be
         added to the training data for the bot.
-       Once this is all finished, it closes any open dialogs from the
-        last move.  */
+       Once this is all finished, it starts the next move  */
     $scope.drawCard = function () {
         // disable the next-card button so the user can't click
         //  multiple times and submit duplicate training data
@@ -241,29 +234,57 @@ angular.module('toptrumps').controller('DuelCtrl', ['$scope', '$state', '$q', 'n
             $scope.decks.computer.push(computercard);
         }
 
-        var training = [
-            // learning from the player's hand
-            {
-                card : getCardAttrs(playercard),
-                choice : $scope.selection,
-                outcome : $scope.outcome
-            },
-            // learning from the computer's hand
-            {
-                card : getCardAttrs(computercard),
-                choice : $scope.selection,
-                // if the player won, the computer lost
-                //   and vice versa.
-                // if the player drew, then leave the outcome as-is
-                outcome : $scope.outcome === 0 ? 0 : -($scope.outcome)
-            }
-        ];
+        // store what happened with this hand before moving on
+        $scope.previous = {
+            player : playercard,
+            computer : computercard,
+            turn : $scope.nextturn,
+            choice : $scope.selection,
+            outcome : $scope.outcome
+        };
 
-        ttBots.learn($scope.deckname, $scope.botname, training)
+        // add these cards to the training data and train a new ML model
+        learnFromTurn(playercard, computercard)
             .then(function () {
-                ngDialog.close();
-            });
+                $scope.learning = false;
+
+                // has the game finished?
+                //  are there any more cards to draw?
+                if ($scope.decks.player.length === 0 ||
+                    $scope.decks.computer.length === 0)
+                {
+                    $scope.learning = true;
+                    return ngDialog.open({
+                        template : 'app/views/duel/gameover.html',
+                        showClose : false,
+                        closeByEscape : false
+                    });
+                }
+
+
+
+                if ($scope.outcome === WIN) {
+                    $scope.nextturn = 'player';
+                }
+                else if ($scope.outcome === LOSE) {
+                    $scope.nextturn = 'computer';
+                }
+                // else if DRAW the nextturn stays the same
+
+
+                if ($scope.nextturn === 'player') {
+                    waitForPlayerMove();
+                }
+                else if ($scope.nextturn === 'computer') {
+                    computerMove();
+                }
+            })
+
     };
+
+
+
+
 
 
 

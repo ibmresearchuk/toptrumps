@@ -59,14 +59,14 @@ angular.module('toptrumps').factory('ttBots', ['$q', '$http', function ($q, $htt
     }
 
 
-    /* Returns a promise that resolves in a second. */
+    /* Returns a promise that resolves in two seconds. */
     function wait () {
         var deferred = $q.defer();
-        setTimeout(deferred.resolve, 1000);
+        setTimeout(deferred.resolve, 2000);
         return deferred.promise;
     }
 
-    /* Calls predict() but won't return for at least 1 second. */
+    /* Calls predict() but won't return for at least 2 seconds. */
     function slowPredict(deckname, botname, card) {
         return $q.all([wait(), predict(deckname, botname, card)])
             .then(function (data) {
