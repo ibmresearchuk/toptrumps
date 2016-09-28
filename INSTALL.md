@@ -1,6 +1,6 @@
-# toptrumps
+# Installing and running
 
-## Running locally
+## Locally
 Requires Python 2.7.x
 
     # get the code
@@ -19,8 +19,7 @@ Requires Python 2.7.x
     export VCAP_APP_HOST=127.0.0.1
     python server.py
 
-## Running in Bluemix
+## Bluemix
   
     cf push
   
-https://toptrumps.eu-gb.mybluemix.net
