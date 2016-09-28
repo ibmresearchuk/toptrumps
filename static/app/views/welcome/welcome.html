@@ -1,12 +1,13 @@
-<div>
+<div class="tt-options-screen">
     <div class="tt-side">
         <h1>Teach a computer to play a card game</h1>
     </div>
-    <div class="tt-side">
-        <div>This is a simple demo of machine learning. You can train a bot how to play a Top Trumps-style card game.</div>
-        <div>What shall we call your bot?</div>
-        <form name="createBot" ng-submit="startBot()">
+    <div class="tt-side tt-message tt-message--welcome">
+        <p>This is a simple demo of machine learning. You can train a bot how to play a Top Trumps-style card game.</p>
+        <p>What shall we call your bot?</p>
+        <form name="createBot" ng-submit="startBot()" class="tt-form--createbot">
             <input
+				class="tt-input"
                 type="text"
                 name="input"
                 ng-model="botname.text"
@@ -16,6 +17,7 @@
                 ng-maxlength=32
                 required/>
             <input
+				  class="tt-input"
                 type="submit"
                 id="submit"
                 ng-disabled="!createBot.$valid"

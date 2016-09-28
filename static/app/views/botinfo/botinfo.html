@@ -1,26 +1,26 @@
-<div>
+<div class="tt-options-screen tt-botinfo">
     <div class="tt-side">
         <h1 ng-show="loading">please wait...</h1>
         <div ng-hide="loading">
-            <h1 ng-show="trainingcount === 0">A new bot!</h1>
+            <h1 ng-show="trainingcount === 0" class="">A new bot!</h1>
             <h1 ng-show="trainingcount > 0">Welcome back!</h1>
-            <div>Hello<span ng-show="trainingcount > 0"> again</span>, {{ botname }}!</div>
+            <div style="margin-bottom: 30px;">Hello<span ng-show="trainingcount > 0"> again</span>, <span class="tt-emphasis">{{ botname }}</span>!</div>
             <div>
-                <button ng-click="newGame()">
+                <button ng-click="newGame()" class="tt-button">
                     {{ trainingcount > 0 ? 'Play another game!' : 'Play your first game!' }}
                 </button>
             </div>
         </div>
     </div>
-    <div class="tt-side">
+    <div class="tt-side tt-message">
         <div ng-show="loading">please wait...</div>
         <div ng-show="!loading && trainingcount === 0">
             <p>In Top Trumps, you choose one of the attributes on your card. If yours is better, you win the cards.</p>
-            <p>{{botname}} will learn how to play the game. It will learn which attribute it should choose when it is it's turn.</p>
+			<p><span class="tt-emphasis">{{botname}}</span> will learn how to play the game. It will learn which attribute it should choose when it is it's turn.</p>
         </div>
         <div ng-show="!loading && trainingcount > 0">
-            <p>{{botname}} is learning how to play Top Trumps. It is learning which attribute it should choose when it is it's turn.</p>
-            <p>{{botname}} has seen {{trainingcount}} {{ trainingcount === 1 ? 'turn' : 'turns' }} of the game so far.</p>
+			<p><span class="tt-emphasis">{{botname}}</span> is learning how to play Top Trumps. It is learning which attribute it should choose when it is it's turn.</p>
+			<p><span class="tt-emphasis">{{botname}}</span> has seen <span class="tt-emphasis">{{trainingcount}} {{ trainingcount === 1 ? 'turn' : 'turns' }}</span> of the game so far.</p>
         </div>
     </div>
 </div>
