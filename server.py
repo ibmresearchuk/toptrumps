@@ -16,6 +16,8 @@ class Root(object): pass
 class Decks:
     exposed = True
 
+    decks.list()
+
     @cherrypy.tools.accept(media="application/json")
 
     def GET(self, deckname=None):

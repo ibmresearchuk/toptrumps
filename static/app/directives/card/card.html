@@ -14,8 +14,8 @@
               class="tt-attribute"
               ng-hide="key === 'picture' || key === 'name'"
               ng-click="onSelectAttribute({'key' : key, 'value' : value})">
-              <th>{{ key }}</th>
-              <td>{{ value }}</td>
+              <th><span tooltips tooltip-template="{{ explanationsData[key] }}" tooltip-side="left">{{ key }}</span></th>
+              <td><span tooltips tooltip-template="{{ explanationsData[key] }}" tooltip-side="right">{{ value }}</span></td>
             </tr>
           </tbody>
         </table>

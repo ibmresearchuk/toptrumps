@@ -5,8 +5,9 @@ angular.module('toptrumps').directive('ttCard', [ function () {
         templateUrl : 'app/directives/card/card.html',
         scope : {
             cardData : '=',
+            explanationsData : '=',
             revealed : '=',
-             onSelectAttribute : '&'
+            onSelectAttribute : '&'
         }
     };
 }]);

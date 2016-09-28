@@ -309,6 +309,7 @@ angular.module('toptrumps').controller('DuelCtrl', ['$scope', '$state', '$q', 'n
     $q.all([ decksPromise, gamePromise ])
         .then(function (data) {
             $scope.rules = data[0].rules;
+            $scope.explanations = data[0].explanations;
 
             $scope.decks.player = data[1].playerone;
             $scope.decks.computer = data[1].playertwo;

@@ -22,6 +22,7 @@ def loadDeckData ():
     for deckname in decknames:
         attributes = []
         rules = {}
+        explanations = {}
         cards = []
 
         with open("./data/decks/" + deckname, "rb") as csvfile:
@@ -31,9 +32,11 @@ def loadDeckData ():
 
             idx = 0
             rulesrow = reader.next()
+            tooltipsrow = reader.next()
             for attribute in attributes:
                 if attribute != "name" and attribute != "picture":
                     rules[attribute] = rulesrow[idx]
+                    explanations[attribute] = tooltipsrow[idx]
                 idx += 1
 
             for row in reader:
@@ -47,7 +50,7 @@ def loadDeckData ():
                     idx += 1
                 cards.append(card)
 
-            decks[getFileNameWithoutExtension(deckname)] = { "rules" : rules, "cards" : cards }
+            decks[getFileNameWithoutExtension(deckname)] = { "rules" : rules, "cards" : cards, "explanations" : explanations }
 
 
 

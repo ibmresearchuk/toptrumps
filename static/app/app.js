@@ -1,4 +1,4 @@
-angular.module('toptrumps', ['ui.router', 'ngDialog'])
+angular.module('toptrumps', ['ui.router', 'ngDialog', '720kb.tooltips'])
     .config(function ($urlRouterProvider, $stateProvider, $locationProvider) {
 
       $locationProvider.html5Mode({

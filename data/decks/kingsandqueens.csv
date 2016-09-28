@@ -1,5 +1,6 @@
 name,picture,reign,ascension,death,spouses,children
 ,,higher,lower,higher,higher,higher
+,,Number of years on the throne (higher number wins),Age when they came to the throne (lower number wins),Age when they died (higher number wins),Number of husbands/wives (higher number wins),Number of children (higher number wins)
 William I (1066-1087),https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/King_William_I_%28%27The_Conqueror%27%29_from_NPG.jpg/341px-King_William_I_%28%27The_Conqueror%27%29_from_NPG.jpg,20,38,59,1,10
 William II (1087-1100),https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/British_School_-_William_Rufus_-_Google_Art_Project.jpg/356px-British_School_-_William_Rufus_-_Google_Art_Project.jpg,13,30,43,0,0
 Henry I (1100-1135),https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/British_-_Henry_I_-_Google_Art_Project.jpg/357px-British_-_Henry_I_-_Google_Art_Project.jpg,35,31,67,2,4
