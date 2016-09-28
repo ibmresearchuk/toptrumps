@@ -118,7 +118,7 @@ angular.module('toptrumps').controller('DuelCtrl', ['$scope', '$state', '$q', 'n
     $scope.userMove = function (key) {
 
         // ignore if it's not their turn!
-        if ($scope.nextturn === 'player') {
+        if ($scope.nextturn === 'player' && $scope.thinking) {
 
             // decide if the player won
             handleMove(key);
