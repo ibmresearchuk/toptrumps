@@ -2,8 +2,8 @@
     <div class="tt-side">
         <h1 ng-show="loading">please wait...</h1>
         <div ng-hide="loading">
-            <h1 ng-show="trainingcount === 0" class="">A new bot!</h1>
-            <h1 ng-show="trainingcount > 0">Welcome back!</h1>
+            <h1 ng-show="trainingcount === 0" class="tt-header--large">A new bot!</h1>
+            <h1 ng-show="trainingcount > 0" class="tt-header--large">Welcome back!</h1>
             <div style="margin-bottom: 30px;">Hello<span ng-show="trainingcount > 0"> again</span>, <span class="tt-emphasis">{{ botname }}</span>!</div>
             <div>
                 <button ng-click="newGame()" class="tt-button">

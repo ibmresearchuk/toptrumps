@@ -62,7 +62,8 @@ body {
 	vertical-align: top;
 }
 
-.tt-options-screen {
+.tt-options-screen,
+.tt-duel-screen {
 	display: flex;
 	color: #5b5854;
 	align-items: center;
@@ -78,7 +79,7 @@ body {
 	margin: auto;
 }
 
-.tt-options-screen .tt-side h1 {
+.tt-options-screen .tt-side .tt-header--large {
 	text-transform: uppercase;
 	font-size: 3em;
 	font-family: Helvetica;

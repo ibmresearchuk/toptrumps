@@ -1,89 +1,108 @@
-.tt-side-player .tt-attribute:hover {
-    cursor: pointer;
-    color: orange;
-    transition: 0.3s color;
+.tt-duel-screen .tt-side {
+  height: 100%;
+  text-align: center;
+  margin: auto;
 }
 
-.tt-side-player .tt-card-container {
-    position: absolute;
+.tt-side-player .tt-attribute:hover {
+  cursor: pointer;
+  color: orange;
+  transition: 0.3s color;
 }
+
+.tt-duel-decks {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+
+/*.tt-side-player .tt-card-container {
+    position: absolute;
+}*/
 
 .tt-deck {
-    position: relative;
-    height: 100%;
+  position: relative;
+  height: 100%;
+}
+
+.tt-card-container {
+  position: absolute;
 }
 
 .tt-card-container.tt-card-stacked {
-    position: absolute;
+  position: absolute;
 }
 
 .tt-card-container.tt-card-stacked .tt-card {
-    transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
 
 .tt-side-player .tt-card-container.tt-card-stacked {
-    transform: translate(50px, 150px)rotateX(-110deg)rotateZ(-10deg);
+  transform: translate(50px, 150px)rotateX(-110deg)rotateZ(-10deg);
 }
 
 .tt-side-computer .tt-card-container.tt-card-stacked {
-    transform: translate(50px, 150px)rotateX(-110deg)rotateZ(10deg);
+  transform: translate(50px, 150px)rotateX(-110deg)rotateZ(10deg);
 }
 
 .tt-card-container.tt-card-stacked .tt-card .back {
-    background-color: #e1dc0c;
-    box-shadow: 0px 0px 2px #726f04;
+  background-color: #e1dc0c;
+  box-shadow: 0px 0px 2px #726f04;
 }
 
 .tt-score {
-    position: absolute;
-    font-size: 72px;
-    right: 40px;
-    bottom: 40px;
+  position: absolute;
+  font-size: 72px;
+  right: 40px;
+  bottom: 40px;
 }
 
 .tt-side-computer .tt-score {
-    right: initial;
-    left: 40px;
+  right: initial;
+  left: 40px;
 }
 
 .ngdialog.ngdialog-theme-default {
-    padding-bottom: 160px;
-    padding-top: 95px
+  padding-bottom: 160px;
+  padding-top: 95px
 }
 
 .tt-infopanel-sectionheading {
-    background-color: grey;
-    color: white;
-    font-weight: bold;
-    font-size: 20px;
-    padding: 8px;
+  background-color: grey;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 8px;
 }
 
 .tt-infopanel-body {
-    padding-top: 5px;
-    padding-bottom: 15px;
+  padding-top: 5px;
+  padding-bottom: 15px;
 }
 
 .tt-infopanel-section {
-    font-size: 14px;
-    padding-bottom: 8px;
+  font-size: 14px;
+  padding-bottom: 8px;
 }
 
 .tt-infopanel-section > .label {
-    font-size: 13px;
+  font-size: 13px;
 }
 
 .tt-infopanel-action > .labelsmall,
 .tt-infopanel-section > .labelsmall {
-    font-size: 11px;
+  font-size: 11px;
 }
+
 .tt-infopanel-section > .value {
-    font-size: 18px;
+  font-size: 18px;
 }
+
 .tt-infopanel-section > .valuesmall {
-    font-size: 11px;
+  font-size: 11px;
 }
 
 .tt-infopanel-action {
-    text-align: right;
+  text-align: right;
 }
