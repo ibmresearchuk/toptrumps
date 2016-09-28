@@ -158,7 +158,14 @@ angular.module('toptrumps').controller('DuelCtrl', ['$scope', '$state', '$q', 'n
                     $scope.winstreak = 0;
                 }
 
-                // wait for the next-card button to be clicked
+
+                if ($scope.autodraw) {
+                    // automatically move on to the next card
+                    setTimeout($scope.drawCard, 400);
+                }
+                else {
+                    // wait for the next-card button to be clicked
+                }
         });
     }
 

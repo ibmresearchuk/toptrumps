@@ -72,6 +72,8 @@
 .tt-infopanel-section > .label {
     font-size: 13px;
 }
+
+.tt-infopanel-action > .labelsmall,
 .tt-infopanel-section > .labelsmall {
     font-size: 11px;
 }

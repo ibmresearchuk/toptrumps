@@ -50,6 +50,7 @@
         <span ng-show="outcome === -1" class="value">{{ botname }} wins</span>
       </div>
       <div ng-hide="thinking" class="tt-infopanel-action">
+        <input type="checkbox" ng-model="autodraw"> <span class="labelsmall">Auto-draw</span>
         <button ng-disabled="learning" ng-click="drawCard()">Next card</button>
       </div>
     </div>
