@@ -25,10 +25,6 @@ angular.module('toptrumps').controller('DuelCtrl', ['$scope', '$state', '$q', 'n
     var DRAW = 0;
     var LOSE = -1;
 
-    /* information about the previous hand */
-    $scope.previous = undefined;
-
-
 
     /* required info about the game */
     $scope.botname = $state.params.botname;
@@ -49,6 +45,18 @@ angular.module('toptrumps').controller('DuelCtrl', ['$scope', '$state', '$q', 'n
         player : true,
         computer : false
     };
+
+
+    /* messages to cycle around in the UI */
+    $scope.didyouknow = [
+        'placeholder-text : A description of how the game works',
+        'placeholder-text : A short explanation of what data the bot is using to learn from',
+        'placeholder-text : Type of ML being used',
+        'placeholder-text : Other games that AI have been trained to play like Super Mario',
+        'placeholder-text : Some reassuring message that the bot isn\'t cheating and looking at your card',
+        'placeholder-text : Something else interesting'
+    ];
+
 
 
     /* Helper function to get the card attributes as a
@@ -240,15 +248,6 @@ angular.module('toptrumps').controller('DuelCtrl', ['$scope', '$state', '$q', 'n
             $scope.decks.player.push(playercard);
             $scope.decks.computer.push(computercard);
         }
-
-        // store what happened with this hand before moving on
-        $scope.previous = {
-            player : playercard,
-            computer : computercard,
-            turn : $scope.nextturn,
-            choice : $scope.selection,
-            outcome : $scope.outcome
-        };
 
         // add these cards to the training data and train a new ML model
         learnFromTurn(playercard, computercard)

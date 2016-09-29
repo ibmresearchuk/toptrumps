@@ -32,7 +32,7 @@
   </div>
 
   <div ng-hide="loading" class="tt-infopanel">
-    <div class="tt-infopanel-sectionheading">Rules:</div>
+    <div class="tt-infopanel-sectionheading">Rules</div>
     <div class="tt-infopanel-body">
       <div ng-repeat="(rule, description) in explanations" class="tt-infopanel-section">
         <span class="value">{{ rule }}</span>
@@ -40,7 +40,7 @@
       </div>
     </div>
 
-    <div class="tt-infopanel-sectionheading">Current turn:</div>
+    <div class="tt-infopanel-sectionheading">Current turn</div>
     <div class="tt-infopanel-body">
       <div class="tt-infopanel-section">
         <span class="label">Turn:</span>
@@ -68,24 +68,6 @@
       </div>
     </div>
 
-    <div ng-show="previous" class="tt-infopanel-sectionheading">Previous turn:</div>
-    <div ng-show="previous" class="tt-infopanel-body">
-      <div class="tt-infopanel-section">
-        <span class="labelsmall">Turn:</span>
-        <span class="valuesmall">{{ previous.turn === 'computer' ? botname : previous.turn }}</span>
-      </div>
-      <div class="tt-infopanel-section">
-        <span class="labelsmall">Choice:</span>
-        <span class="valuesmall">{{ previous.choice }}</span>
-      </div>
-      <div class="tt-infopanel-section">
-        <span class="labelsmall">Outcome:</span>
-        <span ng-show="previous.outcome === 1" class="valuesmall">player won</span>
-        <span ng-show="previous.outcome === 0" class="valuesmall">draw</span>
-        <span ng-show="previous.outcome === -1" class="valuesmall">{{ botname }} won</span>
-      </div>
-    </div>
-
     <div class="tt-infopanel-sectionheading">Statistics</div>
     <div class="tt-infopanel-body">
       <div ng-show="computertraining" class="tt-infopanel-section">
@@ -98,5 +80,13 @@
         Best win streak by {{ botname }}: {{ beststreak }} turns
       </div>
     </div>
+
+    <div class="tt-infopanel-sectionheading">Did you know?</div>
+    <div class="tt-infopanel-body">
+        <div class="tt-infopanel-section">
+          {{  didyouknow[((computertraining / 4) | number:0) % didyouknow.length] }}
+        </div>
+    </div>
+
   </div>
 </div>
