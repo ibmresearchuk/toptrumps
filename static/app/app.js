@@ -29,5 +29,9 @@ angular.module('toptrumps', ['ui.router', 'ngDialog'])
                   botname : '',
                   deckname : ''
               }
+          })
+          .state('about', {
+              url : '/about',
+              templateUrl : 'app/views/about/about.html'
           });
 });

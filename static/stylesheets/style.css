@@ -77,6 +77,27 @@ body {
 	background-image: url('../images/tiny-grid.png');
 }
 
+.tt-about-screen {
+	color: #5b5854;
+	height: 100%;
+	border-radius: 5px;
+	background-color: #fffff8;
+	background-image: url('../images/tiny-grid.png');
+}
+
+.tt-about-screen > .tt-about-contents {
+	height: 95%;
+	overflow: scroll;
+	overflow-x: hidden;
+	padding: 20px;
+}
+
+.tt-about-contents a {
+	color: #369436;
+	font-weight: bold;
+	text-decoration: none;
+}
+
 .tt-options-screen .tt-side {
 	text-align: center;
 	max-width: 300px;
