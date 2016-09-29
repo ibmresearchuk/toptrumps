@@ -85,6 +85,7 @@ in-deck
 .tt-card .front,
 .tt-card .back {
   width: 310px;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   position: absolute;
   top: 0;
