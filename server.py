@@ -194,15 +194,14 @@ if __name__ == "__main__":
         }
     }
 
+    ui = Root()
+    cherrypy.tree.mount(ui, "/", uiconfig)
+
     cherrypy.tree.mount(Bots(), "/api/bots", apiconfig)
     cherrypy.tree.mount(Decks(), "/api/decks", apiconfig)
     cherrypy.tree.mount(Games(), "/api/games", apiconfig)
 
-    ui = Root()
-    cherrypy.tree.mount(ui, "/", uiconfig)
-    cherrypy.tree.mount(ui, "/welcome", uiconfig)
-    cherrypy.tree.mount(ui, "/botinfo", uiconfig)
-    cherrypy.tree.mount(ui, "/duel", uiconfig)
+
 
 
     PORT = int(os.getenv("PORT", 8000))

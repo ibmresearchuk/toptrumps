@@ -2,7 +2,7 @@ angular.module('toptrumps', ['ui.router', 'ngDialog'])
     .config(function ($urlRouterProvider, $stateProvider, $locationProvider) {
 
       $locationProvider.html5Mode({
-          enabled: true
+          enabled: false
       });
 
       $urlRouterProvider.otherwise('/welcome');
