@@ -3,14 +3,14 @@
   <div class="tt-duel-decks">
     <div ng-hide="loading" class="tt-side tt-side-player">
       <div class="tt-deck">
-        <tt-card ng-repeat="card in decks.player" ng-class="{'tt-card-stacked' : $index > 0, 'tt-card-waiting' : $index === 0 && nextturn === 'computer', 'tt-disabled' : outcome > -2}" ng-style="{'top' : $index === 0 ? 0 : 180 + ((decks.computer.length-$index) * (130/decks.computer.length)) + 'px', 'right' : $index === 0 ? '0px' : '100px', 'z-index' : $index === 0 ? 10 : 'initial'}" card-data="card" explanations-data="explanations" revealed="true" on-select-attribute="userMove(key)" highlight-attribute="{'attribute' : selection, 'reason' : outcome === 1 ? 'win' : (outcome === 0 ? 'draw' : (outcome === -1 ? 'loss' : undefined))}">
+        <tt-card ng-repeat="card in decks.player" ng-class="{'tt-card-stacked' : $index > 0, 'tt-card-waiting' : $index === 0 && nextturn === 'computer', 'tt-disabled' : outcome > -2}" ng-style="{'top' : $index === 0 ? 0 : 180 + ((decks.computer.length-$index) * (130/decks.computer.length)) + 'px', 'right' : $index === 0 ? '0px' : '100px', 'z-index' : $index === 0 ? 10 : 'initial'}" card-data="card" revealed="true" on-select-attribute="userMove(key)" highlight-attribute="{'attribute' : selection, 'reason' : outcome === 1 ? 'win' : (outcome === 0 ? 'draw' : (outcome === -1 ? 'loss' : undefined))}">
         </tt-card>
         <div class="tt-score">{{ decks.player.length }}</div>
       </div>
     </div>
     <div class="tt-side tt-side-computer">
       <div class="tt-deck">
-        <tt-card ng-repeat="card in decks.computer" ng-class="{'tt-card-stacked' : $index > 0}" ng-style="{'top' : $index === 0 ? 0 : 180 + ((decks.computer.length-$index) * (130/decks.computer.length)) + 'px', 'z-index' : $index === 0 ? 10 : 'initial'}" card-data="card" explanations-data="explanations" revealed="show.computer && $index === 0" highlight-attribute="{'attribute' : selection, 'reason' : outcome === -1 ? 'win' : (outcome === 0 ? 'draw' : (outcome === 1 ? 'loss' : undefined))}">
+        <tt-card ng-repeat="card in decks.computer" ng-class="{'tt-card-stacked' : $index > 0}" ng-style="{'top' : $index === 0 ? 0 : 180 + ((decks.computer.length-$index) * (130/decks.computer.length)) + 'px', 'z-index' : $index === 0 ? 10 : 'initial'}" card-data="card" revealed="show.computer && $index === 0" highlight-attribute="{'attribute' : selection, 'reason' : outcome === -1 ? 'win' : (outcome === 0 ? 'draw' : (outcome === 1 ? 'loss' : undefined))}">
         </tt-card>
         <div class="tt-score">{{ decks.computer.length }}</div>
       </div>
@@ -32,6 +32,14 @@
   </div>
 
   <div ng-hide="loading" class="tt-infopanel">
+    <div class="tt-infopanel-sectionheading">Rules:</div>
+    <div class="tt-infopanel-body">
+      <div ng-repeat="(rule, description) in explanations" class="tt-infopanel-section">
+        <span class="value">{{ rule }}</span>
+        <span class="label">{{ description }}</span>
+      </div>
+    </div>
+
     <div class="tt-infopanel-sectionheading">Current turn:</div>
     <div class="tt-infopanel-body">
       <div class="tt-infopanel-section">
@@ -59,18 +67,9 @@
         <button ng-disabled="learning" ng-click="drawCard()">Next card</button>
       </div>
     </div>
+
     <div ng-show="previous" class="tt-infopanel-sectionheading">Previous turn:</div>
     <div ng-show="previous" class="tt-infopanel-body">
-      <table border=0>
-        <tr>
-          <td>player</td>
-          <td>computer</td>
-        </tr>
-        <tr>
-          <td><img src="images/thumbnail-1.jpg"></td>
-          <td><img src="images/thumbnail-2.jpg"></td>
-        </tr>
-      </table>
       <div class="tt-infopanel-section">
         <span class="labelsmall">Turn:</span>
         <span class="valuesmall">{{ previous.turn === 'computer' ? botname : previous.turn }}</span>
@@ -86,6 +85,7 @@
         <span ng-show="previous.outcome === -1" class="valuesmall">{{ botname }} won</span>
       </div>
     </div>
+
     <div class="tt-infopanel-sectionheading">Statistics</div>
     <div class="tt-infopanel-body">
       <div ng-show="computertraining" class="tt-infopanel-section">
