@@ -166,7 +166,8 @@ class Games:
 
 
 
-
+def error_page_404(status, message, traceback, version):
+    return "404 Error!"
 
 
 
@@ -208,7 +209,9 @@ if __name__ == "__main__":
     HOST = os.getenv("VCAP_APP_HOST", "0.0.0.0")
     cherrypy.config.update({
         "server.socket_port" : PORT,
-        "server.socket_host" : HOST
+        "server.socket_host" : HOST,
+
+        "error_page.404" : error_page_404
     })
 
     print "Starting server on %s:%d" % (HOST, PORT)
