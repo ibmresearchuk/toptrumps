@@ -3,14 +3,14 @@
   <div class="tt-duel-decks">
     <div ng-hide="loading" class="tt-side tt-side-player">
       <div class="tt-deck">
-        <tt-card ng-repeat="card in decks.player" ng-class="{'tt-card-stacked' : $index > 0, 'tt-card-waiting' : $index === 0 && nextturn === 'computer', 'tt-disabled' : outcome > -2}" ng-style="{'top' : $index === 0 ? 0 : 180 + ((decks.computer.length-$index) * (130/decks.computer.length)) + 'px', 'right' : $index === 0 ? '0px' : '100px'}" card-data="card" explanations-data="explanations" revealed="true" on-select-attribute="userMove(key)" highlight-attribute="{'attribute' : selection, 'reason' : outcome === 1 ? 'win' : (outcome === 0 ? 'draw' : (outcome === -1 ? 'loss' : undefined))}">
+        <tt-card ng-repeat="card in decks.player" ng-class="{'tt-card-stacked' : $index > 0, 'tt-card-waiting' : $index === 0 && nextturn === 'computer', 'tt-disabled' : outcome > -2}" ng-style="{'top' : $index === 0 ? 0 : 180 + ((decks.computer.length-$index) * (130/decks.computer.length)) + 'px', 'right' : $index === 0 ? '0px' : '100px', 'z-index' : $index === 0 ? 10 : 'initial'}" card-data="card" explanations-data="explanations" revealed="true" on-select-attribute="userMove(key)" highlight-attribute="{'attribute' : selection, 'reason' : outcome === 1 ? 'win' : (outcome === 0 ? 'draw' : (outcome === -1 ? 'loss' : undefined))}">
         </tt-card>
         <div class="tt-score">{{ decks.player.length }}</div>
       </div>
     </div>
     <div class="tt-side tt-side-computer">
       <div class="tt-deck">
-        <tt-card ng-repeat="card in decks.computer" ng-class="{'tt-card-stacked' : $index > 0}" ng-style="{'top' : $index === 0 ? 0 : 180 + ((decks.computer.length-$index) * (130/decks.computer.length)) + 'px'}" card-data="card" explanations-data="explanations" revealed="show.computer && $index === 0" highlight-attribute="{'attribute' : selection, 'reason' : outcome === -1 ? 'win' : (outcome === 0 ? 'draw' : (outcome === 1 ? 'loss' : undefined))}">
+        <tt-card ng-repeat="card in decks.computer" ng-class="{'tt-card-stacked' : $index > 0}" ng-style="{'top' : $index === 0 ? 0 : 180 + ((decks.computer.length-$index) * (130/decks.computer.length)) + 'px', 'z-index' : $index === 0 ? 10 : 'initial'}" card-data="card" explanations-data="explanations" revealed="show.computer && $index === 0" highlight-attribute="{'attribute' : selection, 'reason' : outcome === -1 ? 'win' : (outcome === 0 ? 'draw' : (outcome === 1 ? 'loss' : undefined))}">
         </tt-card>
         <div class="tt-score">{{ decks.computer.length }}</div>
       </div>
