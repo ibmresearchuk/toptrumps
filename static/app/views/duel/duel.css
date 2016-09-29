@@ -14,6 +14,7 @@
   width: 100%;
   height: 100%;
   display: flex;
+  position: relative;
 }
 
 
@@ -28,6 +29,10 @@
 
 .tt-card-container {
   position: absolute;
+}
+
+.tt-card-container.tt-card-waiting {
+  pointer-events: none;
 }
 
 .tt-card-container.tt-card-stacked {
@@ -56,11 +61,60 @@
   font-size: 72px;
   right: 40px;
   bottom: 40px;
+  padding: 15px;
+  border: 3px solid #7a3f28;
+  background: #f0ebe9;
+  font-family: monospace;
+  color: #7a3f28;
+  border-radius: 70px;
 }
 
 .tt-side-computer .tt-score {
   right: initial;
   left: 40px;
+}
+
+.tt-interactions {
+  position: absolute;
+  width: 100%;
+  top: 440px;
+  text-align: center;
+}
+
+.tt-interactions-message {
+  display: inline-block;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 1px solid black;
+  border-radius: 5px;
+  color: white;
+  pointer-events: none;
+}
+
+.tt-interactions-outcome {
+  margin: 8px 0px 5px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.tt-interactions button.tt-next-card {
+  font-size: 1.1em;
+  border: none;
+  background: #7a3f28;
+  color: whitesmoke;
+  cursor: pointer;
+  padding: 5px 10px 7px;
+  border-radius: 5px;
+  margin-top: 3px;
+}
+
+.tt-interactions button.tt-next-card:hover {
+  background: #592e1d;
+  color: whitesmoke;
+}
+
+.tt-interactions button.tt-next-card:focus {
+  outline: none;
 }
 
 .ngdialog.ngdialog-theme-default {

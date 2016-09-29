@@ -1,13 +1,14 @@
-angular.module('toptrumps').directive('ttCard', [ function () {
-    return {
-        restrict : 'E',
-        replace : true,
-        templateUrl : 'app/directives/card/card.html',
-        scope : {
-            cardData : '=',
-            explanationsData : '=',
-            revealed : '=',
-            onSelectAttribute : '&'
-        }
-    };
+angular.module('toptrumps').directive('ttCard', [function () {
+	return {
+		restrict: 'E',
+		replace: true,
+		templateUrl: 'app/directives/card/card.html',
+		scope: {
+			cardData: '=',
+			explanationsData: '=',
+			revealed: '=',
+			highlightAttribute: '=',
+			onSelectAttribute: '&'
+		}
+	};
 }]);

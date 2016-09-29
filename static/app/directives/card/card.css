@@ -41,6 +41,17 @@
   width: 50%;
 }
 
+.tt-attribute.tt-attribute--win {
+  color: #09a409;
+}
+
+.tt-attribute.tt-attribute--draw {
+  color: orange;
+}
+
+.tt-attribute.tt-attribute--loss {
+  color: red;
+}
 
 /* flipper/card CSS */
 

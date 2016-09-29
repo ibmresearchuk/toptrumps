@@ -278,6 +278,8 @@ angular.module('toptrumps').controller('DuelCtrl', ['$scope', '$state', '$q', 'n
                 }
                 // else if DRAW the nextturn stays the same
 
+                // reset the result for this turn
+                $scope.outcome = undefined;
 
                 if ($scope.nextturn === 'player') {
                     waitForPlayerMove();

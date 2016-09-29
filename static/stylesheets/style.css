@@ -7,6 +7,10 @@ body {
 	margin: 0px;
 }
 
+.tt-disabled {
+  pointer-events: none;
+}
+
 .tt-emphasis {
 	font-weight: bold;
 }
