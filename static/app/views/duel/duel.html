@@ -3,7 +3,7 @@
   <div class="tt-duel-decks">
     <div ng-hide="loading" class="tt-side tt-side-player">
       <div class="tt-deck">
-        <tt-card ng-repeat="card in decks.player" ng-class="{'tt-card-stacked' : $index > 0, 'tt-card-waiting' : $index === 0 && nextturn === 'computer', 'tt-disabled' : outcome > -2}" ng-style="{'top' : $index === 0 ? 0 : 180 + ((decks.computer.length-$index) * (130/decks.computer.length)) + 'px', 'right' : $index === 0 ? '0px' : '100px', 'z-index' : $index === 0 ? 10 : 'initial'}" card-data="card" revealed="true" on-select-attribute="userMove(key)" highlight-attribute="{'attribute' : selection, 'reason' : outcome === 1 ? 'win' : (outcome === 0 ? 'draw' : (outcome === -1 ? 'loss' : undefined))}">
+        <tt-card ng-repeat="card in decks.player" ng-class="{'tt-card-stacked' : $index > 0, 'tt-card-waiting' : $index === 0 && nextturn === 'computer', 'tt-disabled' : outcome > -2}" ng-style="{'top' : $index === 0 ? 0 : 180 + ((decks.player.length-$index) * (130/decks.player.length)) + 'px', 'right' : $index === 0 ? '10px' : '100px', 'z-index' : $index === 0 ? 10 : 'initial'}" card-data="card" revealed="true" on-select-attribute="userMove(key)" highlight-attribute="{'attribute' : selection, 'reason' : outcome === 1 ? 'win' : (outcome === 0 ? 'draw' : (outcome === -1 ? 'loss' : undefined))}">
         </tt-card>
         <div class="tt-score">{{ decks.player.length }}</div>
       </div>
@@ -17,10 +17,14 @@
     </div>
     <div class="tt-interactions">
       <div ng-show="thinking && nextturn === 'player'">
-        <div class="tt-interactions-message"><span>YOUR TURN!</span><br><span>Click on the attribute you want to play...</span></div>
+        <div class="tt-interactions-message"><span>YOUR TURN!</span>
+          <br><span>Click on the attribute you want to play...</span>
+        </div>
       </div>
       <div ng-show="thinking && nextturn === 'computer'">
-        <div class="tt-interactions-message"><span style="text-transform: uppercase">{{ botname }}'s TURN!</span><br><span>Thinking...</span></div>
+        <div class="tt-interactions-message"><span style="text-transform: uppercase">{{ botname }}'s TURN!</span>
+          <br><span>Thinking...</span>
+        </div>
       </div>
       <div>
         <div ng-show="!thinking && outcome === 1" class="tt-interactions-outcome">You Won!</div>
@@ -35,53 +39,36 @@
     <div class="tt-infopanel-sectionheading">Rules</div>
     <div class="tt-infopanel-body">
       <div ng-repeat="(rule, description) in explanations" class="tt-infopanel-section">
-        <span class="value">{{ rule }}</span>
+        <span class="value">{{ rule }}</span><br/>
         <span class="label">{{ description }}</span>
       </div>
     </div>
 
-    <div class="tt-infopanel-sectionheading">Current turn</div>
-    <div class="tt-infopanel-body">
-      <div class="tt-infopanel-section">
-        <span class="label">Turn:</span>
-        <span class="value">{{ nextturn === 'computer' ? botname : nextturn }}</span>
-      </div>
-      <div ng-show="thinking && nextturn === 'player'">
-        Click on the value you want to play
-      </div>
-      <div ng-show="thinking && nextturn === 'computer'">
-        Thinking...
-      </div>
-      <div ng-hide="thinking" class="tt-infopanel-section">
-        <span class="label">Choice:</span>
-        <span class="value">{{ selection }}</span>
-      </div>
-      <div ng-hide="thinking" class="tt-infopanel-section">
-        <span class="label">Outcome:</span>
-        <span ng-show="outcome === 1" class="value">player wins</span>
-        <span ng-show="outcome === 0" class="value">draw</span>
-        <span ng-show="outcome === -1" class="value">{{ botname }} wins</span>
-      </div>
-      <div ng-hide="thinking" class="tt-infopanel-action">
-        <input type="checkbox" ng-model="autodraw"> <span class="labelsmall">Auto-draw</span>
-        <button ng-disabled="learning" ng-click="drawCard()">Next card</button>
-      </div>
+  <div class="tt-infopanel-sectionheading">Statistics</div>
+  <div class="tt-infopanel-body">
+    <div class="tt-infopanel-computer">
+      <img src="../../../images/robot-head.png">
+      <label>{{ botname }}</label>
     </div>
-
-    <div class="tt-infopanel-sectionheading">Statistics</div>
-    <div class="tt-infopanel-body">
-      <div ng-show="computertraining" class="tt-infopanel-section">
-        Number of turns seen by {{ botname }} : {{ computertraining }}
-      </div>
-      <div class="tt-infopanel-section">
-        Current win streak by {{ botname }}: {{ winstreak }} turns
-      </div>
-      <div class="tt-infopanel-section">
-        Best win streak by {{ botname }}: {{ beststreak }} turns
-      </div>
+    <div ng-show="computertraining" class="tt-infopanel-section">
+      <b>Number of turns seen</b>
+      <br><span>{{ computertraining }}</span>
     </div>
+    <div class="tt-infopanel-section">
+      <b>Current win streak</b>
+      <br><span>{{ winstreak }} turns</span>
+    </div>
+    <div class="tt-infopanel-section">
+      <b>Best win streak</b>
+      <br><span>{{ beststreak }} turns</span>
+    </div>
+  </div>
+  <div class="tt-infopanel-action">
+    <checkbox class="btn-primary tt-button-autodraw" ng-model="autodraw"></checkbox>
+    <label>Auto-draw</label>
+  </div>
 
-    <div class="tt-infopanel-sectionheading">Did you know?</div>
+  <div class="tt-infopanel-sectionheading">Did you know?</div>
     <div class="tt-infopanel-body">
         <div class="tt-infopanel-section">
           {{  didyouknow[((computertraining / 4) | number:0) % didyouknow.length] }}

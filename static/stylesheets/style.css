@@ -7,6 +7,10 @@ body {
 	margin: 0px;
 }
 
+label {
+    margin: 0px;
+}
+
 .tt-about-link {
 	position: fixed;
 	text-align: right;
@@ -64,7 +68,7 @@ body {
 .tt-app-container {
 	padding: 10px;
 	background: #7a3f28;
-	height: calc(100% - 20px);
+	height: 100%;
 }
 
 .tt-side {
@@ -75,9 +79,11 @@ body {
 
 .tt-infopanel {
 	width: 20%;
-	display: inline-block;
 	overflow: hidden;
-	vertical-align: top;
+    height: 100%;
+    text-align: center;
+    border-left: 1px solid brown;
+    background: rgba(203, 131, 56, 0.49);
 }
 
 .tt-options-screen,

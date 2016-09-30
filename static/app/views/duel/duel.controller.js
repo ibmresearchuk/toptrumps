@@ -173,7 +173,7 @@ angular.module('toptrumps').controller('DuelCtrl', ['$scope', '$state', '$q', 'n
 
                 if ($scope.autodraw) {
                     // automatically move on to the next card
-                    setTimeout($scope.drawCard, 400);
+                    setTimeout($scope.drawCard, 600);
                 }
                 else {
                     // wait for the next-card button to be clicked

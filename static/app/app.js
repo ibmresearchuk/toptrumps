@@ -1,4 +1,4 @@
-angular.module('toptrumps', ['ui.router', 'ngDialog'])
+angular.module('toptrumps', ['ui.router', 'ngDialog', 'ui.checkbox'])
     .config(function ($urlRouterProvider, $stateProvider, $locationProvider) {
 
       $locationProvider.html5Mode({

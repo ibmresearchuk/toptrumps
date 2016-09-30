@@ -61,7 +61,7 @@
   font-size: 72px;
   right: 40px;
   bottom: 40px;
-  padding: 15px;
+  padding: 10px 15px;
   border: 3px solid #7a3f28;
   background: #f0ebe9;
   font-family: monospace;
@@ -124,16 +124,16 @@
 }
 
 .tt-infopanel-sectionheading {
-  background-color: grey;
-  color: white;
+  background-color: #4f291a;
+  color: #fefefe;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 16px;
   padding: 8px;
 }
 
 .tt-infopanel-body {
-  padding-top: 5px;
-  padding-bottom: 15px;
+  padding: 5px 10px 15px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.25);
 }
 
 .tt-infopanel-section {
@@ -143,6 +143,7 @@
 
 .tt-infopanel-section > .label {
   font-size: 13px;
+  white-space: normal;
 }
 
 .tt-infopanel-action > .labelsmall,
@@ -159,5 +160,44 @@
 }
 
 .tt-infopanel-action {
-  text-align: right;
+  text-align: center;
+  font-size: 12px;
+  display: flex;
+  padding-top: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.tt-infopanel-action button {
+  background-color: transparent;
+  border: 3px solid #4f291a;
+  margin: 5px;
+  color: #4f291a;
+}
+
+.tt-infopanel-action button:hover {
+  color: #fff;
+  background-color: #4f291a;
+  border-color: #1a0e09;
+  outline: none;
+}
+
+.tt-infopanel-action button:focus {
+  color: #4f291a;
+  background-color: transparent;
+  border-color: #1a0e09;
+  outline: none;
+}
+
+.tt-infopanel-computer {
+  display: flex;
+  max-height: 68px;
+  align-items: center;
+  justify-content: center;
+}
+
+.tt-infopanel-computer img {
+  width: 100%;
+  max-width: 48px;
+  padding: 10px;
 }

@@ -77,7 +77,7 @@
 }
 
 
-/* 
+/*
 in-deck
     transform: translate(0,150px)rotateX(-110deg);
 */
@@ -104,7 +104,7 @@ in-deck
 .tt-card .back {
   transform: rotateY(180deg);
   background-color: #f6f00b;
-  background-image: url(https://www.transparenttextures.com/patterns/crissxcross.png);
+  background-image: url("../../../images/crissxcross.png");
 }
 
 
