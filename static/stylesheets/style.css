@@ -79,7 +79,7 @@ label {
 
 .tt-infopanel {
 	width: 20%;
-	overflow: hidden;
+	overflow: auto;
     height: 100%;
     text-align: center;
     border-left: 1px solid brown;
