@@ -52,16 +52,16 @@ angular.module('toptrumps').controller('DuelCtrl', ['$scope', '$state', '$q', 'n
 
     /* messages to cycle around in the UI */
     $scope.didyouknow = [
-        'The player which wins the turn gets to choose attribute for the next turn.',
-        $scope.botname + ' learns from every turn of the game. With each new card, it should get a little better at knowing which attribute to choose.',
-        'The information that ' + $scope.botname + ' uses to learn from are the attributes from it\'s card, the choice that was made (whether the choice was made by ' + $scope.botname + ' or you), and whether or not it won.',
+        'The player which wins the turn gets to choose for the next turn.',
+        $scope.botname + ' learns from every turn of the game. With each new card, it should get a little better at knowing what to choose.',
+        'The information ' + $scope.botname + ' uses to learn from are the numbers on it\'s card, the choice that was made (whether the choice was made by ' + $scope.botname + ' or you), and whether or not it won.',
         'When it is ' + $scope.botname + '\'s turn, the only information it uses to choose are the numbers on it\'s own card. It isn\'t peeking at your card. Honest!',
         'People have trained machine learning systems to play lots of games before. With about a day\'s training, you can train a ML system to play Super Mario.',
-        'You are only training ' + $scope.botname + '. This means that if you want to go back to playing against a bot that doesn\'t know how to play, just start again with a new bot name.',
+        'You are only training ' + $scope.botname + '. This means that if you want to go back to playing against a bot that doesn\'t know how to play, start again with a new bot name.',
         'The more examples that ' + $scope.botname + ' has to learn from, the better it can get.',
         'The type of machine learning that is being used to train ' + $scope.botname + ' is called a decision tree.',
-        'Winning or losing a turn are both useful to train ' + $scope.botname + '. Losing isn\'t a bad thing, as it helps train the bot what it should avoid doing.',
-        'If you want to help a new bot to learn quickly, try to give it an example of what happens for every attribute choice. If there is any attribute that it has never seen chosen in it\'s training, it wont know when it is good to choose it.'
+        'Winning or losing a turn are both useful to train ' + $scope.botname + '. Losing isn\'t bad, as it helps train ' + $scope.botname + ' what it should avoid doing.',
+        'If you want a new bot to learn quickly, give it examples of every attribute choice. If there is any attribute that it has never seen chosen in it\'s training, it wont know when it is good to choose it.'
     ];
 
 
