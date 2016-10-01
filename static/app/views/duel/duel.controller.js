@@ -61,7 +61,8 @@ angular.module('toptrumps').controller('DuelCtrl', ['$scope', '$state', '$q', 'n
         'The more examples that ' + $scope.botname + ' has to learn from, the better it can get.',
         'The type of machine learning that is being used to train ' + $scope.botname + ' is called a decision tree.',
         'Winning or losing a turn are both useful to train ' + $scope.botname + '. Losing isn\'t bad, as it helps train ' + $scope.botname + ' what it should avoid doing.',
-        'If you want a new bot to learn quickly, give it examples of every attribute choice. If there is any attribute that it has never seen chosen in it\'s training, it wont know when it is good to choose it.'
+        'If you want a new bot to learn quickly, give it examples of every attribute choice. If there is any attribute that it has never seen chosen in it\'s training, it wont know when it is good to choose it.',
+        $scope.botname + ' hasn\'t been given any info about what the values in the deck are for each attribute, or what the rules are. It it learning that from you.'
     ];
 
 
