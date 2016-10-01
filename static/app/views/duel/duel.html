@@ -55,17 +55,13 @@
       <br><span>{{ computertraining }}</span>
     </div>
     <div class="tt-infopanel-section">
-      <b>Current win streak</b>
-      <br><span>{{ winstreak }} turns</span>
+      <b>Win streak (turns)</b>
+      <br>Current: {{ winstreak }} &nbsp; &nbsp; Best: {{ beststreak }}
     </div>
-    <div class="tt-infopanel-section">
-      <b>Best win streak</b>
-      <br><span>{{ beststreak }} turns</span>
+    <div class="tt-infopanel-action">
+      <checkbox class="btn-primary tt-button-autodraw" ng-model="autodraw" title="If you tick this, you won't have to click Next Card after the computer's turn."></checkbox>
+      <label title="If you tick this, you won't have to click Next Card after the computer's turn.">Auto-draw</label>
     </div>
-  </div>
-  <div class="tt-infopanel-action">
-    <checkbox class="btn-primary tt-button-autodraw" ng-model="autodraw"></checkbox>
-    <label>Auto-draw</label>
   </div>
 
   <div class="tt-infopanel-sectionheading">Did you know?</div>

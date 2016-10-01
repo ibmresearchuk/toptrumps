@@ -1,204 +1,200 @@
 .tt-duel-screen .tt-side {
-  height: 100%;
-  text-align: center;
-  margin: auto;
+    height: 100%;
+    text-align: center;
+    margin: auto;
 }
 
 .tt-side-player .tt-attribute:hover {
-  cursor: pointer;
-  color: orange;
-  transition: 0.3s color;
+    cursor: pointer;
+    color: orange;
+    transition: 0.3s color;
 }
 
 .tt-duel-decks {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
 }
 
-
-/*.tt-side-player .tt-card-container {
-    position: absolute;
-}*/
-
 .tt-deck {
-  position: relative;
-  height: 100%;
+    position: relative;
+    height: 100%;
 }
 
 .tt-card-container {
-  position: absolute;
+    position: absolute;
 }
 
 .tt-card-container.tt-card-waiting {
-  pointer-events: none;
+    pointer-events: none;
 }
 
 .tt-card-container.tt-card-stacked {
-  position: absolute;
+    position: absolute;
 }
 
 .tt-card-container.tt-card-stacked .tt-card {
-  transform: rotateY(180deg);
+    transform: rotateY(180deg);
 }
 
 .tt-side-player .tt-card-container.tt-card-stacked {
-  transform: translate(50px, 150px)rotateX(-110deg)rotateZ(-10deg);
+    transform: translate(50px, 150px)rotateX(-110deg)rotateZ(-10deg);
 }
 
 .tt-side-computer .tt-card-container.tt-card-stacked {
-  transform: translate(50px, 150px)rotateX(-110deg)rotateZ(10deg);
+    transform: translate(50px, 150px)rotateX(-110deg)rotateZ(10deg);
 }
 
 .tt-card-container.tt-card-stacked .tt-card .back {
-  background-color: #e1dc0c;
-  box-shadow: 0px 0px 2px #726f04;
+    background-color: #e1dc0c;
+    box-shadow: 0px 0px 2px #726f04;
 }
 
 .tt-score {
-  position: absolute;
-  font-size: 72px;
-  right: 40px;
-  bottom: 40px;
-  padding: 10px 15px;
-  border: 3px solid #7a3f28;
-  background: #f0ebe9;
-  font-family: monospace;
-  color: #7a3f28;
-  border-radius: 70px;
+    position: absolute;
+    font-size: 72px;
+    right: 40px;
+    bottom: 40px;
+    padding: 10px 15px;
+    border: 3px solid #7a3f28;
+    background: #f0ebe9;
+    font-family: monospace;
+    color: #7a3f28;
+    border-radius: 70px;
 }
 
 .tt-side-computer .tt-score {
-  right: auto;
-  left: 40px;
+    right: auto;
+    left: 40px;
 }
 
 .tt-interactions {
-  position: absolute;
-  width: 100%;
-  top: 440px;
-  left: 0px;
-  text-align: center;
+    position: absolute;
+    width: 100%;
+    top: 440px;
+    left: 0px;
+    text-align: center;
 }
 
 .tt-interactions-message {
-  display: inline-block;
-  padding: 5px;
-  background-color: rgba(0, 0, 0, 0.4);
-  border: 1px solid black;
-  border-radius: 5px;
-  color: white;
-  pointer-events: none;
+    display: inline-block;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px solid black;
+    border-radius: 5px;
+    color: white;
+    pointer-events: none;
 }
 
 .tt-interactions-outcome {
-  margin: 8px 0px 5px;
-  text-transform: uppercase;
-  font-weight: bold;
+    margin: 8px 0px 5px;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 .tt-interactions button.tt-next-card {
-  font-size: 1.1em;
-  border: none;
-  background: #7a3f28;
-  color: whitesmoke;
-  cursor: pointer;
-  padding: 5px 10px 7px;
-  border-radius: 5px;
-  margin-top: 3px;
+    font-size: 1.1em;
+    border: none;
+    background: #7a3f28;
+    color: whitesmoke;
+    cursor: pointer;
+    padding: 5px 10px 7px;
+    border-radius: 5px;
+    margin-top: 3px;
 }
 
 .tt-interactions button.tt-next-card:hover {
-  background: #592e1d;
-  color: whitesmoke;
+    background: #592e1d;
+    color: whitesmoke;
 }
 
 .tt-interactions button.tt-next-card:focus {
-  outline: none;
+    outline: none;
 }
 
 .ngdialog.ngdialog-theme-default {
-  padding-bottom: 160px;
-  padding-top: 95px
+    padding-bottom: 160px;
+    padding-top: 95px
 }
 
 .tt-infopanel-sectionheading {
-  background-color: #4f291a;
-  color: #fefefe;
-  font-weight: bold;
-  font-size: 16px;
-  padding: 8px;
+    background-color: #4f291a;
+    color: #fefefe;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 2px;
 }
 
 .tt-infopanel-body {
-  padding: 5px 10px 15px;
-  border-bottom: 1px solid rgba(128, 128, 128, 0.25);
+    padding: 5px 10px 10px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.25);
 }
 
 .tt-infopanel-section {
-  font-size: 14px;
-  padding-bottom: 8px;
+    font-size: 14px;
+    padding-bottom: 4px;
 }
 
 .tt-infopanel-section > .label {
-  font-size: 13px;
-  white-space: normal;
+    font-size: 12px;
+    white-space: normal;
+    font-weight: normal;
 }
 
 .tt-infopanel-action > .labelsmall,
 .tt-infopanel-section > .labelsmall {
-  font-size: 11px;
+    font-size: 11px;
 }
 
 .tt-infopanel-section > .value {
-  font-size: 18px;
+    font-size: 15px;
 }
 
 .tt-infopanel-section > .valuesmall {
-  font-size: 11px;
+    font-size: 11px;
 }
 
 .tt-infopanel-action {
-  text-align: center;
-  font-size: 12px;
-  display: flex;
-  padding-top: 10px;
-  align-items: center;
-  justify-content: center;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 12px;
+    display: flex;
+    padding-top: 10px;
 }
 
 .tt-infopanel-action button {
-  background-color: transparent;
-  border: 3px solid #4f291a;
-  margin: 5px;
-  color: #4f291a;
+    background-color: transparent;
+    border: 3px solid #4f291a;
+    margin: 5px;
+    color: #4f291a;
 }
 
 .tt-infopanel-action button:hover {
-  color: #fff;
-  background-color: #4f291a;
-  border-color: #1a0e09;
-  outline: none;
+    color: #fff;
+    background-color: #4f291a;
+    border-color: #1a0e09;
+    outline: none;
 }
 
 .tt-infopanel-action button:focus {
-  color: #4f291a;
-  background-color: transparent;
-  border-color: #1a0e09;
-  outline: none;
+    color: #4f291a;
+    background-color: transparent;
+    border-color: #1a0e09;
+    outline: none;
 }
 
 .tt-infopanel-computer {
-  display: flex;
-  max-height: 68px;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    max-height: 68px;
+    align-items: center;
+    justify-content: center;
 }
 
 .tt-infopanel-computer img {
-  width: 100%;
-  max-width: 48px;
-  max-height: 48px;
-  padding: 10px;
+    width: 100%;
+    max-width: 48px;
+    max-height: 48px;
+    padding: 10px;
 }
