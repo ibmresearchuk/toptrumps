@@ -13,16 +13,15 @@ label {
 
 .tt-about-link {
 	position: fixed;
-	text-align: right;
-	padding-right: 15px;
+	padding-left: 15px;
 	margin-top: -35px;
     top: 100%;
-    right: 0%;
 }
 
 .tt-about-link > a {
 	color: #369436;
 	text-decoration: none;
+	cursor: pointer;
 }
 
 .tt-disabled {
