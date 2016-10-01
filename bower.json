@@ -1,6 +1,6 @@
 {
-  "name": "top-trumps-ui",
-  "homepage": "https://github.com/dalelane/toptrumps",
+  "name": "toptrumps",
+  "homepage": "https://github.com/ibmets/toptrumps",
   "private": true,
   "dependencies": {
     "angular": "^1.5.8",

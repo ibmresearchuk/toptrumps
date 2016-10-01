@@ -4,7 +4,7 @@
 Requires Python 2.7.x
 
     # get the code
-    git clone git@github.ibm.com:ets-hackday/toptrumps.git
+    git clone git@github.com:ibmets/toptrumps.git
     cd toptrumps
 
     # install the server-side dependencies
