@@ -4,11 +4,35 @@
         <div ng-hide="loading">
             <h1 ng-show="trainingcount === 0" class="tt-header--large">A new bot!</h1>
             <h1 ng-show="trainingcount > 0" class="tt-header--large">Welcome back!</h1>
-            <div style="margin-bottom: 30px;">Hello<span ng-show="trainingcount > 0"> again</span>, <span class="tt-emphasis">{{ botname }}</span>!</div>
-            <div>
+            <div style="margin-bottom: 60px;">Hello<span ng-show="trainingcount > 0"> again</span>, <span class="tt-emphasis">{{ botname }}</span>!</div>
+            <div style="margin-top: 10px;">
+                Do you want to give {{botname}} more training?
                 <button ng-click="newGame()" class="tt-button">
                     {{ trainingcount > 0 ? 'Play another game!' : 'Play your first game!' }}
                 </button>
+            </div>
+            <div style="margin-top: 10px;">
+                <form name="botMatch" ng-submit="newMatch()" class="tt-form--createbot">
+                    Is {{botname}} ready to play against another bot?
+                    <input
+                        class="tt-input"
+                        type="text"
+                        name="input"
+                        placeholder="Bot to compete against"
+                        ng-model="enemybotname.text"
+                        ng-pattern="enemybotname.word"
+                        ng-trim="false"
+                        ng-minlength=1
+                        ng-maxlength=32
+                        required/>
+                    <input
+                        class="tt-input"
+                        type="submit"
+                        id="submit"
+                        ng-disabled="!botMatch.$valid"
+                        value="Compete" />
+                    <div class="error" ng-show="botMatch.input.$error.pattern">You can only use letters and numbers in bot names</div>
+                </form>
             </div>
         </div>
     </div>

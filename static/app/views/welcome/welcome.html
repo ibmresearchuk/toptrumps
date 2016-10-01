@@ -7,7 +7,7 @@
         <p>What shall we call your bot?</p>
         <form name="createBot" ng-submit="startBot()" class="tt-form--createbot">
             <input
-				class="tt-input"
+                class="tt-input"
                 type="text"
                 name="input"
                 ng-model="botname.text"
@@ -17,12 +17,12 @@
                 ng-maxlength=32
                 required/>
             <input
-				class="tt-input"
+                class="tt-input"
                 type="submit"
                 id="submit"
                 ng-disabled="!createBot.$valid"
                 value="Submit" />
-            <span class="error" ng-show="createBot.input.$error.pattern">You can only use letters and numbers in your bot's name</span>
+            <div class="error" ng-show="createBot.input.$error.pattern">You can only use letters and numbers in your bot's name</div>
         </form>
     </div>
     <div class="tt-about-link"><a href="#about">About this game</a></div>

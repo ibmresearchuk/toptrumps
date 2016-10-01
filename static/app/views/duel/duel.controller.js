@@ -29,10 +29,13 @@ angular.module('toptrumps').controller('DuelCtrl', ['$scope', '$state', '$q', 'n
     /* required info about the game */
     $scope.botname = $state.params.botname;
     $scope.deckname = $state.params.deckname;
+    $scope.enemybotname = $state.params.enemybotname;
     if (!$state.params.botname || !$state.params.deckname){
         return $state.go('welcome');
     }
 
+    /* does the user have to click between every move? */
+    $scope.autodraw = $scope.enemybotname ? true : false;
 
     /* the pile of cards for each player */
     $scope.decks = {
@@ -107,8 +110,41 @@ angular.module('toptrumps').controller('DuelCtrl', ['$scope', '$state', '$q', 'n
 
 
 
+    function handleGameOver () {
+        // hacky workaround to disable buttons to stop the game
+        $scope.learning = true;
+
+        // store the winner's name so we can display it
+        $scope.winner = '';
+        if ($scope.decks.computer.length === 0) {
+            $scope.winner = $scope.enemybotname ? $scope.enemybotname : 'You';
+        }
+        else {
+            $scope.winner = $scope.botname;
+        }
+
+        return ngDialog.open({
+            template : 'app/views/duel/gameover.html',
+            showClose : false,
+            closeByEscape : false,
+            scope : $scope
+        });
+    }
+
+
     function waitForPlayerMove () {
         $scope.thinking = true;
+
+        if ($scope.enemybotname) {
+            ttBots.slowPredict($scope.deckname, $scope.enemybotname, getCardAttrs($scope.decks.player[0]))
+                .then(function (data) {
+                    // decide if the computer won
+                    handleMove(data.choice);
+
+                    // automatically move on to the next card
+                    setTimeout($scope.drawCard, 600);
+                });
+        }
     }
 
 
@@ -263,14 +299,8 @@ angular.module('toptrumps').controller('DuelCtrl', ['$scope', '$state', '$q', 'n
                 if ($scope.decks.player.length === 0 ||
                     $scope.decks.computer.length === 0)
                 {
-                    $scope.learning = true;
-                    return ngDialog.open({
-                        template : 'app/views/duel/gameover.html',
-                        showClose : false,
-                        closeByEscape : false
-                    });
+                    return handleGameOver();
                 }
-
 
 
                 if ($scope.outcome === WIN) {
@@ -320,6 +350,9 @@ angular.module('toptrumps').controller('DuelCtrl', ['$scope', '$state', '$q', 'n
             $scope.decks.computer = data[1].playertwo;
 
             $scope.loading = false;
+
+            // wait for the first player to make their move
+            waitForPlayerMove();
         });
 
 }]);

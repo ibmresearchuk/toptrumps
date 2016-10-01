@@ -1,10 +1,10 @@
 body {
-	font-family: Helvetica;
-	height: 100%;
-	width: 100%;
-	position: absolute;
-	overflow: hidden;
-	margin: 0px;
+    font-family: Helvetica;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    overflow: hidden;
+    margin: 0px;
 }
 
 label {
@@ -12,16 +12,16 @@ label {
 }
 
 .tt-about-link {
-	position: fixed;
-	padding-left: 15px;
-	margin-top: -35px;
+    position: fixed;
+    padding-left: 15px;
+    margin-top: -35px;
     top: 100%;
 }
 
 .tt-about-link > a {
-	color: #369436;
-	text-decoration: none;
-	cursor: pointer;
+    color: #369436;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .tt-disabled {
@@ -29,56 +29,57 @@ label {
 }
 
 .tt-emphasis {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 .tt-input[type="text"] {
-	font-size: 0.9em;
-	padding: 8px 5px;
-	color: #5b5854;
-	background: rgba(97, 149, 97, 0.28);
-	border: none;
+    font-size: 0.9em;
+    padding: 8px 5px;
+    color: #5b5854;
+    background: rgba(97, 149, 97, 0.28);
+    border: none;
+    width: 250px;
 }
 
 .tt-input[type="text"]:focus {
-	outline-color: green;
+    outline-color: green;
 }
 
 .tt-input[type="submit"], .tt-button {
-	background: rgba(36, 94, 36, 0.52);
-	color: white;
-	border: none;
-	font-size: 0.9em;
-	padding: 8px 16px;
-	cursor: pointer;
-	text-transform: uppercase;
+    background: rgba(36, 94, 36, 0.52);
+    color: white;
+    border: none;
+    font-size: 0.9em;
+    padding: 8px 16px;
+    cursor: pointer;
+    text-transform: uppercase;
 }
 
 .tt-input--submit:disabled,
 .tt-button:disabled {
-	pointer-events: none;
+    pointer-events: none;
 }
 
 .tt-input--submit:hover,
 .tt-button:hover {
-	background: rgba(36, 94, 36, 0.75);
+    background: rgba(36, 94, 36, 0.75);
 }
 
 .tt-app-container {
-	padding: 10px;
-	background: #7a3f28;
-	height: 100%;
+    padding: 10px;
+    background: #7a3f28;
+    height: 100%;
 }
 
 .tt-side {
-	width: 50%;
-	overflow: hidden;
-	vertical-align: top;
+    width: 50%;
+    overflow: hidden;
+    vertical-align: top;
 }
 
 .tt-infopanel {
-	width: 20%;
-	overflow: auto;
+    width: 20%;
+    overflow: auto;
     height: 100%;
     text-align: center;
     border-left: 1px solid brown;
@@ -87,61 +88,61 @@ label {
 
 .tt-options-screen,
 .tt-duel-screen {
-	display: flex;
-	color: #5b5854;
-	align-items: center;
-	height: 100%;
-	border-radius: 5px;
-	background-color: #fffff8;
-	background-image: url('../images/tiny-grid.png');
+    display: flex;
+    color: #5b5854;
+    align-items: center;
+    height: 100%;
+    border-radius: 5px;
+    background-color: #fffff8;
+    background-image: url('../images/tiny-grid.png');
 }
 
 .tt-about-screen {
-	color: #5b5854;
-	height: 100%;
-	border-radius: 5px;
-	background-color: #fffff8;
-	background-image: url('../images/tiny-grid.png');
+    color: #5b5854;
+    height: 100%;
+    border-radius: 5px;
+    background-color: #fffff8;
+    background-image: url('../images/tiny-grid.png');
 }
 
 .tt-about-screen > .tt-about-contents {
-	height: 95%;
-	overflow: scroll;
-	overflow-x: hidden;
-	padding: 20px;
+    height: 95%;
+    overflow: scroll;
+    overflow-x: hidden;
+    padding: 20px;
 }
 
 .tt-about-contents a {
-	color: #369436;
-	font-weight: bold;
-	text-decoration: none;
+    color: #369436;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 .tt-options-screen .tt-side {
-	text-align: center;
-	max-width: 300px;
-	margin: auto;
+    text-align: center;
+    max-width: 400px;
+    margin: auto;
 }
 
 .tt-options-screen .tt-side .tt-header--large {
-	text-transform: uppercase;
-	font-size: 3em;
-	font-family: Helvetica;
+    text-transform: uppercase;
+    font-size: 3em;
+    font-family: Helvetica;
 }
 
 .tt-options-screen .tt-side.tt-message {
-	line-height: 1.5em;
-	font-size: 1.3em;
+    line-height: 1.5em;
+    font-size: 1.3em;
 }
 
 .tt-options-screen .tt-side.tt-message.tt-message--welcome {
-	max-width: 80%;
+    max-width: 80%;
 }
 
 .tt-form--createbot {
-	padding: 10px 0px;
+    padding: 10px 0px;
 }
 
 .tt-botinfo h1 {
-	margin-bottom: 10px;
+    margin-bottom: 10px;
 }

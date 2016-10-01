@@ -3,6 +3,7 @@
   <div class="tt-duel-decks">
     <div ng-hide="loading" class="tt-side tt-side-player">
       <div class="tt-deck">
+        <span class="tt-playername" ng-show="!!enemybotname">{{enemybotname}}</span>
         <tt-card ng-repeat="card in decks.player" ng-class="{'tt-card-stacked' : $index > 0, 'tt-card-waiting' : $index === 0 && nextturn === 'computer', 'tt-disabled' : outcome > -2}" ng-style="{'top' : $index === 0 ? 0 : 180 + ((decks.player.length-$index) * (130/decks.player.length)) + 'px', 'right' : $index === 0 ? '10px' : '100px', 'z-index' : $index === 0 ? 10 : 'initial'}" card-data="card" revealed="true" on-select-attribute="userMove(key)" highlight-attribute="{'attribute' : selection, 'reason' : outcome === 1 ? 'win' : (outcome === 0 ? 'draw' : (outcome === -1 ? 'loss' : undefined))}">
         </tt-card>
         <div class="tt-score">{{ decks.player.length }}</div>
@@ -10,6 +11,7 @@
     </div>
     <div class="tt-side tt-side-computer">
       <div class="tt-deck">
+        <span class="tt-playername" ng-show="!!enemybotname">{{botname}}</span>
         <tt-card ng-repeat="card in decks.computer" ng-class="{'tt-card-stacked' : $index > 0}" ng-style="{'top' : $index === 0 ? 0 : 180 + ((decks.computer.length-$index) * (130/decks.computer.length)) + 'px', 'z-index' : $index === 0 ? 10 : 'initial'}" card-data="card" revealed="show.computer && $index === 0" highlight-attribute="{'attribute' : selection, 'reason' : outcome === -1 ? 'win' : (outcome === 0 ? 'draw' : (outcome === 1 ? 'loss' : undefined))}">
         </tt-card>
         <div class="tt-score">{{ decks.computer.length }}</div>
@@ -17,8 +19,8 @@
     </div>
     <div class="tt-interactions">
       <div ng-show="thinking && nextturn === 'player'">
-        <div class="tt-interactions-message"><span>YOUR TURN!</span>
-          <br><span>Click on the attribute you want to play...</span>
+        <div class="tt-interactions-message"><span>{{ enemybotname ? enemybotname + "'s" : "YOUR"}} TURN!</span>
+          <br><span ng-hide="!!enemybotname">Click on the attribute you want to play...</span>
         </div>
       </div>
       <div ng-show="thinking && nextturn === 'computer'">
@@ -27,11 +29,11 @@
         </div>
       </div>
       <div>
-        <div ng-show="!thinking && outcome === 1" class="tt-interactions-outcome">You Won!</div>
-        <div ng-show="!thinking && outcome === 0" class="tt-interactions-outcome">You Drew!</div>
-        <div ng-show="!thinking && outcome === -1" class="tt-interactions-outcome">You Lost!</div>
+        <div ng-show="!thinking && outcome === 1" class="tt-interactions-outcome">{{ enemybotname ? enemybotname : "You"}} Won!</div>
+        <div ng-show="!thinking && outcome === 0" class="tt-interactions-outcome">{{ enemybotname ? enemybotname : "You"}} Drew!</div>
+        <div ng-show="!thinking && outcome === -1" class="tt-interactions-outcome">{{ enemybotname ? enemybotname : "You"}} Lost!</div>
       </div>
-      <button class="tt-next-card" ng-hide="thinking" ng-disabled="learning" ng-click="drawCard()">Next Card</button>
+      <button class="tt-next-card" ng-hide="!!enemybotname || thinking" ng-disabled="learning" ng-click="drawCard()">Next Card</button>
     </div>
   </div>
 
@@ -58,7 +60,7 @@
       <b>Win streak (turns)</b>
       <br>Current: {{ winstreak }} &nbsp; &nbsp; Best: {{ beststreak }}
     </div>
-    <div class="tt-infopanel-action">
+    <div class="tt-infopanel-action" ng-hide="!!enemybotname">
       <checkbox class="btn-primary tt-button-autodraw" ng-model="autodraw" title="If you tick this, you won't have to click Next Card after the computer's turn."></checkbox>
       <label title="If you tick this, you won't have to click Next Card after the computer's turn.">Auto-draw</label>
     </div>

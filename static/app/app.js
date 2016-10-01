@@ -27,7 +27,8 @@ angular.module('toptrumps', ['ui.router', 'ngDialog', 'ui.checkbox'])
               controller: 'DuelCtrl',
               params : {
                   botname : '',
-                  deckname : ''
+                  deckname : '',
+                  enemybotname : ''
               }
           })
           .state('about', {

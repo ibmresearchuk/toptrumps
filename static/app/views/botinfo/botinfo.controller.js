@@ -10,6 +10,12 @@ angular.module('toptrumps')
         return $state.go('welcome');
     }
 
+    $scope.enemybotname = {
+        text : '',
+        word : '[A-Za-z0-9]+'
+    };
+
+
     ttBots.get($scope.botname)
         .then(function (data) {
             $scope.loading = false;
@@ -20,6 +26,17 @@ angular.module('toptrumps')
         });
 
     $scope.newGame = function () {
-        $state.go('duel', { botname : $scope.botname, deckname : ttDecks.DECKNAME });
+        $state.go('duel', {
+            botname : $scope.botname,
+            deckname : ttDecks.DECKNAME
+        });
+    };
+
+    $scope.newMatch = function () {
+        $state.go('duel', {
+            botname : $scope.botname,
+            enemybotname : $scope.enemybotname.text,
+            deckname : ttDecks.DECKNAME
+        });
     };
 }]);
