@@ -1,6 +1,8 @@
 # toptrumps
 ## Simple child's demo of machine learning - train a bot to play Top Trumps
 
+![screenshot](https://raw.githubusercontent.com/ibmets/toptrumps/master/screenshot.png)
+
 ###What is this?
 This was inspired by the game <a href="https://en.wikipedia.org/wiki/Top_Trumps">Top Trumps</a> that I used to play as a kid. It's an online version where you play against the computer.
 
